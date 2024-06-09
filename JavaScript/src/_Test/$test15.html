@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            background-color: wheat;
+            width: 200px;
+            height: 400px;
+            position: absolute;
+            margin-left: 500px;
+            margin-top: 100px;
+        }
+        h1{
+            position: absolute;
+            top: 250px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div">
+</div>
+
+<script>
+    let div=document.getElementById("div")
+    let body=document.getElementById("body")
+    let arr=["理论自信","道路自信","制度自信","文化自信"]
+    let arrIndex=0
+    addEventListener("click",creatNode)
+
+    function creatNode(){
+        let h1=document.createElement("h1")
+        h1.textContent=arr[arrIndex]
+        div.appendChild(h1)
+        arrIndex++
+        textEmerge(h1)
+    }
+
+    function textEmerge(event){
+
+        setInterval(function (){
+            event.style.color="rgb("+parseInt(Math.random()*255+1)+","+parseInt(Math.random()*255+1)+","+parseInt(Math.random()*255+1)+")"
+            event.style.top=(event.clientTop-10)+"px"
+            clearInterval()
+        },1000)
+    }
+
+
+</script>
+</body>
+</html>

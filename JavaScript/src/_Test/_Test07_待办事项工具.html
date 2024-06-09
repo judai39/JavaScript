@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #171c23
+        }
+
+        #marginDiv {
+            position: fixed;
+            margin-left: 480px;
+            margin-top: auto;
+        }
+
+        text{
+            position: relative;
+            margin-left: -100px;
+        }
+
+        .delete {
+            position: fixed;
+            margin-left: 100px;
+            background-color: crimson;
+        }
+
+        .complete {
+            position: fixed;
+            margin-left: 50px;
+            background-color: darkorange;
+        }
+        th,tr{
+            /*background-color: #F9F9F9;*/
+            width: 300px;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="marginDiv">
+    <h1 style="color: #3DB1FF">代办事项工具</h1>
+    <input id="input">
+    <button style="size: auto;background-color: #3DB1FF">添加</button>
+        <table>
+            <tr id="One" style="background-color: #F9F9F9">
+                <th>
+                    <text id="OneEvent"></text>
+                    <button class="delete" onclick="document.getElementById('OneEvent').innerText=null">删除</button>
+                    <button class="complete"  onclick="document.getElementById('One').style.backgroundColor='Green'">完成</button>
+                </th>
+            </tr>
+            <tr id="Two" style="background-color: #F9F9F9">
+                <th >
+                    <text id="TwoEvent"></text>
+                    <button class="delete" onclick="document.getElementById('TwoEvent').innerText=null">删除</button>
+                    <button class="complete" onclick="document.getElementById('Two').style.backgroundColor='Green'">完成</button>
+                </th>
+            </tr>
+            <tr id="Three" style="background-color: #F9F9F9">
+                <th>
+                    <text id="ThreeEvent"></text>
+                    <button class="delete" onclick="document.getElementById('ThreeEvent').innerText=null">删除</button>
+                    <button class="complete"  onclick="document.getElementById('Three').style.backgroundColor='Green'">完成</button>
+                </th>
+            </tr>
+        </table>
+</div>
+    <script>
+        document.querySelector("button").addEventListener("click", addEvent)
+        function addEvent() {
+            let input=document.getElementById("input")
+            let OneEvent=document.getElementById("OneEvent")
+            let TwoEvent=document.getElementById("TwoEvent")
+            let ThreeEvent=document.getElementById("ThreeEvent")
+            if(OneEvent.innerText==""){
+                OneEvent.innerText=input.value
+            }else if(TwoEvent.innerText==""){
+                TwoEvent.innerText=input.value
+            }else if(ThreeEvent.innerText==""){
+                ThreeEvent.innerText=input.value
+            }else{alert("您的标签已满，请清空")}
+            input.value=null
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**JS中没有字典，可以使用map进行构建
+     * */
+  class Dictionary{
+    constructor() {
+      this.dataStore={}
+    }
+    add(key,value){
+      this.dataStore[key]=value
+    }
+    find(key){
+      return this.dataStore[key]
+    }
+    remove(key){
+      delete this.dataStore[key]
+    }
+    getKeys(){
+      return Object.keys(this.dataStore)
+    }
+
+    // getKeysSort(){
+    //   return this.getKeys().sort()
+    // }
+
+    count(){
+      return this.getKeys.length
+    }
+    showAll(){
+      let res=''
+      this.getKeys().forEach(key=>{
+        res+=`,{key:'${key}',value:'${this.dataStore[key]}'}`
+      })
+      return res.slice(1) //dataStore[0]=''
+    }
+    // showAllSort(){
+    //   let res=''
+    //   this.getKeys().sort().forEach(key=>{
+    //     res+=`,{key:'${key}',value:'${this.dataStore[key]}'}`
+    //   })
+    //   return res.slice(1)
+    // }
+    clearAll(){/**实例化的对象也一起清除了*/
+      this.getKeys().forEach(key=>{
+        delete this.dataStore[key]
+      })
+      this.dataStore={}
+        return this.dataStore
+    }
+      clear(){
+          this.getKeys().forEach(key=>{
+              delete this.dataStore[key]
+          })
+          return this.dataStore
+      }
+  }
+  let dictionary = new Dictionary;
+  dictionary.add(0,'first')
+  dictionary.add(2,'second')
+  dictionary.add(1,'third')
+  // console.log(dictionary.getKeys())
+  // console.log(dictionary.showAll())
+  // console.log(dictionary.clear())
+  // console.log(dictionary.clearAll())
+    console.log(dictionary)
+</script>
+</body>
+</html>

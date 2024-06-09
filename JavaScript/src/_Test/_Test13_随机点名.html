@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 50px auto;
+            width: 300px;
+            height: 300px;
+        }
+
+        input{
+            margin:10px auto;
+            width:300px;
+            height:40px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <table>
+        <tr>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+        </tr>
+        <tr>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+        </tr>
+        <tr>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+        </tr>
+        <tr>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+            <td> 杜浩宇 </td>
+        </tr>
+    </table>
+
+    <input type="button" value="开始点名" id="btn" />
+</div>
+
+<script>
+    let btn = document.getElementById("btn");
+    let box = document.getElementsByTagName("td");
+    let lastColorIndex=0
+    btn.onclick = function () {
+        if (this.value === "开始点名") {
+            function fn() {
+                //记录上次的座位坐标并将其改为白色
+                box[lastColorIndex].style.background="white"
+                //随机获取座位坐标      取整（0-1随机数 * 数组长度）
+                let index = parseInt(Math.random() * box.length);
+                // 组合颜色 n1+n2+n3
+                let n1 = parseInt(Math.random() * 255 + 1);
+                let n2 = parseInt(Math.random() * 255 + 1);
+                let n3 = parseInt(Math.random() * 255 + 1);
+                box[index].style.background="rgb(" + n1 + "," + n2 + "," + n3 + ")"
+                lastColorIndex=index
+            }
+            timer = setInterval(fn, 2);
+            this.value = "停止点名";
+        } else {
+            clearInterval(timer);
+            this.value = "开始点名";
+        }
+    };
+</script>
+</body>
+</html>

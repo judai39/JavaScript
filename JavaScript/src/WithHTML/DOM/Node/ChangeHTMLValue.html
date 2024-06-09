@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="button">我是按钮</button>
+<div id="box"></div>
+<a id="a" href ="">百度一下</a>
+<div style="width:100px;height:100px;background:red;" id="boxStyle"></div>
+<script>
+    /**改变元素的innerText*/
+    let button=document.getElementById("button")
+    button.innerText="我被修改了"
+    console.log(button)
+        //insertAdjacentText(where,text)（在指定的元素节点后插入纯文本《只能插入纯文本》）
+        console.log(button,"insertAdjacentText")
+    /**改变元素的innerHTML*/
+    let box=document.getElementById("box")
+    box.innerHTML="<h1>我是Box中额外添加的大标题</h1>"
+    console.log(box)
+        //insertAdjacentHTML(where,html)（在指定的元素节点后插入html《不适用单个空的元素标签，img，input等》）
+        console.log(box,"<h2>由insertAdjacentHTML创建的小标题</h2>")
+    /**改变HTML元素的属性值*/
+    let a =document.getElementById("a")
+    a.href="https://www.baidu.com"
+    a.setAttribute("href","https://www.baidu.com")
+    console.log(a)
+    /**改变HTML元素的行内样式*/
+    let boxStyle=document.getElementById("boxStyle")
+    boxStyle.style.background="green"
+    console.log(boxStyle)
+</script>
+</body>
+</html>

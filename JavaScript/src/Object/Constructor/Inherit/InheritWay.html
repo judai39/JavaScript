@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+            /**对象继承方式
+             * 严格意义上，js中没有继承结构，只是通过将不同对象的原型成员的覆写来间接实现类似于继承的作用
+             *
+             * (っ °Д °;)っ::仅有组合继承存在父类实例
+             *
+             * 2024补充:
+             * 原型对象继承的不仅包括成员原型继承,还包括构造器原型的继承,
+             *      证明1: Son.prototype.可以访问原型继承的constructor()
+             *      证明2: 113行(最后一段对log()原型的解释)
+             * 因此,原型的继承我不想分为多少多少种,我只想分为两种--
+             *      1.使用 对象.call(this,[属性]) 传递构造成员
+             *      2.使用Father.prototype.方法(),或者Father.prototype=new 继承类实例() 对Father原型
+             *          成员进行直接添加
+             *
+             * 大胆猜测:一个对象的原型其实就是一个等待转型的抽象类,A继承B本质上就是将A的原型用B类进行转型
+             *
+             * */
+
+            /**1.原型链继承(子类型的原型为父类型的一个实例对象)
+             *  本质: 使用 B.prototype=new A() 将A的一个实例化成员添加到B中
+             *  缺点：只能继承父类的实例属性，方法，无法继承实例属性，方法
+                     *无法实现构造函数的服用，每次实例化子类都有父类构造方法的副本
+             * */
+
+            function FatherType(){
+                this.FatherMessage="父类构造方法被调用"
+            }
+            FatherType.prototype.showFatherType=function()
+            {console.log(this.FatherMessage)};
+            function SonType(){this.SonMessage="子类构造方法被调用"}
+            SonType.prototype=new FatherType()
+            SonType.prototype.constructor=SonType//在本例中没用,但是在如果不加,constructor会指向Object
+            SonType.prototype.showSonType=function(){console.log(this.SonMessage)}
+            let sonType=new SonType()
+            sonType.showFatherType()
+            sonType.showSonType()
+
+
+            /**2.借用构造函数继承（使用call(),apply()等方法将父类构造函数引入子类函数）
+             *  本质:在构造器中使用父类.call(this)将父类的构造成员赋给自己从而实现构造继承
+             *  缺点:仅能继承构造器中的初始化成员
+             */
+            function SuperType(name){
+                this.name=name
+                this.showSupperName=function(){
+                    console.log(this.name)
+                };
+            }
+            function SubType(name,age){
+
+                /**这里错了!!call()本质就是一个clone(),对象a.clone(this)就是将对象a初始化后传给this对象构造器!!
+                 * 如果是克隆方法的话,首先没有对象接收这个克隆对象,其次,该构造方法里没有实例化对象
+                 *
+                 * 实际上,call()操纵的是两个对象的构造器原型成员
+                 * */
+                SuperType.call(this,name)
+                this.age=age
+            }
+            SubType.prototype.showSubMessage = function(){
+                console.log(this.name+" "+this.age)
+            }
+            let subType=new SubType("孙悟空",20)
+            subType.showSubMessage()
+            subType.showSupperName()
+            let superType=new SuperType("SuperType是SubType的父亲,无法直接访问SubType的私有成员")
+
+
+
+
+            /**3.组合继承（原链型+借用构造函数的组合继承）  【最常用！！】
+             *  本质:在目标对象的原型中加入父类的实例对象,并且使用call()将构造成员也加入到子类种
+             *  缺点：父类的实例属性既在子类的实例中，也在子类的原型中
+             * */
+            function Person(name,age,job){
+                this.name=name
+                this.age=age
+                this.job=job
+                console.log("Person的构造器实例化")
+            }
+            Person.prototype.setName=function(name){
+                this.name=name
+            };
+            function Student(name,age,price){
+                /**缺点所在1*/
+                Person.call(this,name,age)
+                this.price=price
+                //删除这行后Student构造器会通过原型继承Person构造器中的log()语句原型l
+                // console.log("Student的构造器实例化")
+            }
+            /**将Person的所有成员指向给Student的原型对象成员*/
+            Student.prototype=new Person()
+            /**保险起见,可能用到Student原型构造器,我们将它的原型构造器依旧指向Student构造器*/
+            Student.prototype.constructor=Student
+            Student.prototype.setPrice=function (price){
+                this.price=price
+            }
+            let stu=new Student("david",24,15000)
+            console.log(stu.name,stu.age,stu.price)
+            stu.setName("john")
+            stu.setPrice(23)
+            Student.prototype.constructor();//输出Student构造器实例化
+            //最后一步有点好玩,如果我们不在Student后面加上console.log(),那么输出的还是Person构造器实例化,这并不是
+            //说构造器指向了Person,而是因为console.log()在原型中也有位置,当Student.prototype=new Person()时,
+            //在Student构造器成员中没有发现log(),因此在new Person()时系统为Student的原型构造器分配了一个log(),
+            //由于原型更新,Student实现原型,也会在Student构造器中添加log("Person实例化"),也就是说,Student构造器中
+            //本身就有一个"Person实例化"语句
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>div可以根据不同的方向键向不同的方向移动</title>
+</head>
+<body>
+  <div id="box" style="width: 100px;height:100px;position: absolute;background: red"></div>
+    <script>
+      let box=document.getElementById('box')
+
+      document.onkeydown=function(event){
+        let speed=10
+        switch(event.keyCode){
+          case 37:  //左
+            box.style.left=box.offsetLeft-speed+"px";break
+          case 39:  //右
+            box.style.left=box.offsetLeft+speed+"px";break
+          case 38:  //上
+            box.style.top=box.offsetTop-speed+'px';break
+          case 40:  //下
+            box.style.top=box.offsetTop+speed+'px';break
+        }
+          console.log(box.offsetLeft)  //38，23，45，6，865，
+          console.log(box.style.left)   //38px,23px,45px,6px,865px
+      }
+    </script>
+</body>
+</html>

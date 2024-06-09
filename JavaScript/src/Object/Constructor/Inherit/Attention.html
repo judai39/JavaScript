@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Father(name,age){
+        this.name=name
+        this.age=age
+        this.message=function(){
+            console.log(this.name+this.age)
+        }
+    }
+
+    Father.prototype.GrandFather=function(name,age){
+        // Father.call(this,name,age)
+        this.name=name
+        this.age=age
+        // this.message=function(){
+        //     console.log(this.name+this.age)
+        // }
+    }
+    /**原型与继承体无法共存！
+    * -----为什么？？
+     *  因为生成的原型只能被父级节点调用，不能被window调用，所以"原型.call()"也无法实现了（原型 is not defined）
+    * */Son=function(name,age){
+        /*＞︿＜这是修改之前的代码：原来的代码：GrandFather.prototype.Father...
+        即使在函数内先生成父级节点也无法使用原型.call()（原型不能单独出现）
+        let grandFather=new GrandFather("gf",89)
+        grandFather.Father("f",40)
+        Father.call(this,name,age)*/
+        Father.call(this,name,age)
+    }
+
+    let father = new Father("f",40)
+    father.GrandFather("gf",80)
+    // let grandFather=new GrandFather("gf",89)
+    // grandFather.Father("f",40)
+    let son=new Son("a",21)
+    son.message()
+
+
+
+</script>
+</body>
+</html>

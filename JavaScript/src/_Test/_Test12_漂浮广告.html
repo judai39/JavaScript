@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #coffeeDiv {
+      width: 384px;
+      height: 216px;
+      padding: 0;
+      margin: 0;
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
+    #coffee {
+      width: 384px;
+      height: 216px;
+    }
+  </style>
+
+</head>
+<body>
+<div id="coffeeDiv">
+    <img id="coffee" src="LITTLE%20COFFEE.png" alt=""/>
+</div>
+</body>
+
+  <script>
+      //window.onload()在网页加载完毕后立即执行
+    window.onload = function () {
+      let div = document.getElementById('coffeeDiv');
+      // .documentElement 将dom对象以文档形式返回(为了使广告不越界)
+      let width = document.documentElement.clientWidth;
+      let height = document.documentElement.clientHeight;
+      let runX = 1;
+      let runY = 1;
+      let index=true;
+      //广告漂浮
+        /**注意!当我们想要提高动画运行的速度,需要调高的值是move()函数中的运动速率(runX)
+         * 不能提高定时器中的值
+         * */
+      function move() {
+        let x = div.offsetLeft;
+        let y = div.offsetTop;
+        if (x > width - 384 || x < 0) runX = -runX;
+        div.style.left = x + runX*10 + 'px';
+        if (y > height - 216 || y < 0) runY = -runY;
+        div.style.top = y + runY*10 + 'px';
+      }
+      //漂浮定时器
+      let timer = setInterval(move, 30);
+      //移入移出时广告的浮动
+      div.onmouseover = function () {
+        clearInterval(timer);
+      }
+      div.onmouseout = function () {
+        timer = setInterval(move, 30);
+      }
+      // 点击一次跳转到另一个页面，点击两次销毁
+      div.onclick = function() {
+        if (index) {
+          let coffee = window.open('LITTLE COFFEE');
+          coffee.location = "https://www.baidu.com";
+          index=false;
+        } else {
+          this.style.display = "none";
+        }
+      }
+    }
+  </script>
+
+
+</html>

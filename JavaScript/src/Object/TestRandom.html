@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // let arrStudent=['1','2','3','4','5','6']
+  // delIndex=arrStudent[Math.round(Math.random()*(1-arrStudent.length)+arrStudent.length)]
+  // console.log(delIndex)
+  // arrStudent[delIndex-1]=null
+  // console.log(arrStudent)
+
+  /**获取ip地址*/
+  function getIP(){
+     return getRandom(255)+"."+getRandom(255)+"."+getRandom(255)+"."+getRandom(255)
+  }
+  // let strIP=getRandom(255)+"."+getRandom(255)+"."+getRandom(255)+"."+getRandom(255)
+  // console.log(strIP)
+
+  /**获取0-Num的随机数*/
+  function getRandom(Num){
+      return Math.round(Math.random()*Num)
+  }
+    // console.log(getIP())
+  console.log(Math.round(Math.random()))
+
+</script>
+
+</body>
+</html>

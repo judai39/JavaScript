@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+          let array=[1,2,2,2,3,4,5,6,7,8];
+          //1.filter()过滤函数
+          let filterArray=array.filter(item=>item>2)
+          document.write(filterArray)
+          // array1.filter(item=>array1.includes(item))
+          let arrF1=[2,3,4,6]
+          let arrF2=[1,2,3,4,5,6]
+          let arrFilter=arrF2.filter(item => arrF1.includes(item))
+          console.log(arrFilter)
+          //2.StorageDataType.Array.from()达到.map()效果（from()为静态方法，可以把伪数组转化为真数组）
+          let arrayMap=[{name:"one",value:1},{name:"two",value:2},{name:"three",value:3}]
+          let arrMapName=Array.from(arrayMap,({name}) => name);
+          let arrMapValue=Array.from(arrayMap,({value})=>value);
+          document.write(arrMapName+arrMapValue);
+          //3.foreach()
+          array.forEach((item,index)=>{document.write(item)});
+          array.forEach(function (item,index){document.write(index)})
+          //4.for（关于let与var的作用域）
+
+          //5.filter()过滤器
+          let numArr=[1,2,4,6,7,34,5,23,13,6,4,23]
+          let newArr=numArr.filter(function (item){
+              if(item>10)return item
+          })
+          console.log(newArr)
+
+</script>
+</body>
+</html>

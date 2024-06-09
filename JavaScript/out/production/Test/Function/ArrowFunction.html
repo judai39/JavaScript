@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <script>
+            /**大致作用*/
+            let sum = function(a,b){return a+b}
+            let arrowSum =(a,b)=>{return a+b} //当参数只有一个时可以不带括号
+            //let arrowSum = (a,b)=>return a+b  错误，箭头函数在不指向函数体时默认返回语句内的值
+
+            /**适用领域，作为嵌套函数辅助开发*/
+            let arr = [1,2,3,4,5,6]
+            console.log(arr.map(value=>value*2))
+            /*function apply(){
+              let re=function(){
+                let rere=function (){
+                  return 1
+                }
+                return rere()
+              }
+              return re()
+            }
+            document.write(apply())*/
+
+            /**不能使用arguments
+             * */
+
+
+            /**箭头函数中不兼容this的作用（this修饰的是什么就指向它本身）*/
+            let num=11
+            const obj1={
+              num:22,   /**这样声明的变量是全局变量var*/
+              function1: function(){
+                let num=33
+                const obj2={
+                  num:44,
+                  function2:()=>{
+                    console.log(this.num)
+                  }
+                }
+                obj2.function2()
+              }
+            }
+            obj1.function1()  //num=22
+
+            //将function1也设置为箭头函数，返回undefine（function1也是箭头函数的话num继续
+            // 想上找就是window了）
+            let num=11
+            const obj1={
+              num:22,
+              function1: function(){
+                let num=33
+                const obj2={
+                  num:44,
+                  function2:()=>{
+                    console.log(this.num)
+                  }
+                }
+                obj2.function2()
+              }
+            }
+            obj1.function1()
+      </script>
+</body>
+</html>

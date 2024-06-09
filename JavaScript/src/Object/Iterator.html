@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**用处:自定义遍历数据*/
+
+    /**与其他遍历方法比较*/
+    const xiyou=["唐僧","孙悟空","猪八戒","沙僧"]
+    /*for of 遍历输出数组(元素)*/
+    for(let v of xiyou){
+        console.log(v);
+    }
+    /*for in遍历输出元素(下标)*/
+    for(let v in xiyou){
+        console.log(v);
+    }
+    /*调用默认迭代器输出数组元素(对象)*/
+    let iterator=xiyou[Symbol.iterator]()
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+
+    /**自定义遍历数据*/
+    const class_={
+        name:"五班",
+        students:[
+            "张三",
+            "李四",
+            "王五"
+        ],
+        [Symbol.iterator](){
+            //索引常量
+            let index=0
+            let _this=this
+            return{
+                next:function (){
+                    if(index<_this.students.length){
+                        const result={value:_this.students[index],done:false}
+                        index++
+                        return result
+                    }else{
+                        return{value:undefined,done:true}
+                    }
+                }
+            }
+        }
+    }
+    for(let stu of class_){
+        console.log(stu)
+    }
+
+    /**生成器分割代码,服务于异步编程
+     * 1.*的位置没有限制
+     * 2.生成器返回的结果是迭代器的对象
+     * 3.yield相当于函数的暂停标记
+     * 4.next方法传递实参,作为yield语句的返回值
+     * */
+
+    function * twoTigers(arg){
+        console.log(arg)
+        console.log("代码片段一执行");
+        yield"一只没有眼睛"
+        console.log("代码片段二执行")
+        yield"一只没有尾巴"
+        console.log("代码片段三执行")
+        return "真奇怪"
+    }
+    //生成器函数中的参数
+    let iteratorParameter=twoTigers("tigers")
+    console.log(iteratorParameter.next())
+    //yield只能拦截iterator的传递值
+    // (当yield传递给下一语句(还有未执行的语句的话),但下一语句未执行的话会传给一个空对象,再输出空undefine)
+    let iteratorTiger=twoTigers()
+    console.log(iteratorTiger.next())
+    console.log(iteratorTiger.next())
+    // console.log(iteratorTiger.next())
+    for (let song of twoTigers()){
+        console.log(song)
+    }
+
+    /*(っ °Д °;)っ实例演示:延时获取*/
+    function one(){
+        setTimeout(()=>{
+            console.log(111)
+            iterator.next()
+        },1000)
+    }
+    function two(){
+        setTimeout(()=>{
+            console.log(222)
+            iterator.next()
+        },2000)
+    }
+    function three(){
+        setTimeout(()=>{
+            console.log(333)
+            iterator.next()
+        },3000)
+    }
+    function * TimePrint(){
+        yield one()
+        yield two()
+        yield three()
+    }
+    // let iteratorTime=TimePrint()
+    // iteratorTime.next()
+    // iteratorTime.next()
+    // iteratorTime.next()
+    function TimePrintFunction(){/**也可以直接运行函数,但如果需要一部运行这个函数就无法实现功能了*/
+        one()
+        two()
+        three()
+    }
+
+    /*(っ °Д °;)っ实例演示:模拟获取用户数据,订单数据,商品数据*/
+    function getUsers(){
+        setTimeout(function (){
+            let data="用户数据"
+            console.log(data)
+        },1000)
+    }
+    function getOrders(){
+        setTimeout(function (){
+            let data="订单数据"
+            console.log(data)
+        },1000)
+    }
+    function getGoods(){
+        setTimeout(function (){
+            let data="商品数据"
+            console.log(data)
+        },1000)
+    }
+    function * DataGet(){
+        let user=yield getUsers()
+        console.log(user)
+        let order=yield getOrders()
+        console.log(order);
+        let good=yield getGoods()
+        console.log(good);
+    }
+    let iteratorData=DataGet()
+    iteratorData.next()
+    iteratorData.next()
+    iteratorData.next()
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**用于异步编程,语法上是一个构造函数,用来封装异步操作并获取失败或成功的结果*/
+
+  /**基本使用*/
+  //实例化Promise对象
+  // const p=new Promise(function (resolve,reject){
+  //   setTimeout(function(){
+  //     //成功调用resolve()处理
+  //     let data="数据读取成功"
+  //     resolve(data)
+  //     //失败调用reject()处理
+  //     let err="数据读取失败"
+  //     reject(err)
+  //   },1000)
+  // })
+  // //调用promise对象的then方法
+  // p.then(function (value){
+  //   console.log(value)
+  // },function (reason){
+  //   console.error(reason)
+  // })
+  // console.log(p)
+  // console.error(p)
+
+  /**Promise案例演示*/
+  //接口地址: https://api.apiopen.top/getJoke
+  const CustomPromise=new Promise(((resolve, reject) => {
+        const xhr=new XMLHttpRequest()
+        xhr.open("GET","https://api.apiopen.top/getJoke")
+        xhr.send()
+      xhr.onreadystatechange=function (){
+            if(xhr.readyState===4){
+                if(xhr.status>=200&&xhr.status<300){
+                    resolve(xhr.response)
+                }else{
+                    reject(xhr.status)
+                }
+            }
+      }
+      }))
+  //指令回调
+  CustomPromise.then(function (value){
+      console.log(value)
+  },function (reason){
+      console.error(reason)
+  })
+  console.log(CustomPromise)
+  console.error(CustomPromise)
+
+  /**PromiseThen方法
+   * 调用then方法,then方法返回Promise对象,对象状态由回调函数的执行结果决定(如果回调函数中返回的结果
+   * 是非promise类型的属性,状态为成功,返回对象成功的值)
+   * */
+
+  const PromiseThen=new Promise(((resolve, reject) => {
+      setTimeout(function(){
+          return resolve("用户数据")
+      },1000)
+  }))
+  PromiseThen.then(value => {return value}).then(value => {console.log(value)})
+
+  /**PromiseCatch方法
+   * 只想要处理错误状态时使用catch方法
+   * */
+  const ErrorPromise=new Promise(((resolve, reject) => {
+      setTimeout(()=>reject("出错了"),1000)//箭头函数中{}省略时,默认返回指向值(不可以加return!!)
+  }))
+  ErrorPromise.catch(function (reason){
+      console.log(reason)
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+  <style>
+    /*若想使用style中的模板，需要id与其相同*/
+    #div1 {
+      width:200px;
+      height:200px;
+      background:pink;
+    }
+    #div2 {
+      width:100px;
+      height:100px;
+      background:coral;
+    }
+  </style>
+</head>
+<body>
+<div id="div1">
+    我是div1
+  <div id="div2">我是div2</div>
+</div>
+<a href="https://www.baidu.com" id="baidu">百度一下</a>
+  <script>
+    /**所谓冒泡指的是事件向上传导，当后代元素上的事件触发时，其祖先元素的相同事件也会被触
+     * 发，在开发中大部分情况冒泡都是有用的，如果不希望发生事件冒泡，可以通过事件对象来取消冒泡*/
+
+    //案例一：创建两个div，叠放在一起，分别绑定单击事件，点击最里边的div，会触发两个div的单击事件
+    let div1=document.getElementById('div1')
+    let div2=document.getElementById('div2')
+    div1.onclick=function (){
+      console.log('div1事件触发')
+    }
+    div2.onclick=function (){
+      console.log('div2事件触发')
+      /*stopBubble();*/
+    }
+      /**取消事件冒泡*/
+      function stopBubble(event){
+        if(event && event.stopPropagation()){
+          event.stopPropagation()
+        }else{
+          window.event.cancelBubble=true
+        }
+      }
+    //案例二：点击a标签的时候阻止a标签的默认跳转事件，采用事件阻止
+    let baidu=document.getElementById('baidu')
+    baidu.onclick=function(){
+      // baidu.onclick=function (){}  在运行后重新绑定了一个空事件，stopDefault()不在这个空事件中
+      stopDefault()
+        console.log("stopDefault运行之后还可以执行下一语句")
+    }
+    /**stopDefault()方法实现三种不同应用场景的阻止浏览器默认行为*/
+    function stopDefault(event){
+        if(event&&event.preventDefault){
+          event.preventDefault()    /*继续运行*/
+        }else{
+          window.event.returnValue=false    /*继续运行*/
+        }
+        return false /*后续程序不会运行*/
+    }
+
+  </script>
+</body>
+</html>

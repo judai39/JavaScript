@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    /**Location中封装了浏览器的地址栏信息，如果直接打印location，则可以获取到地址栏的信息*/
+
+    /**常用属性*/
+    //直接输出location对象的全部信息
+    console.log(location)
+    //输出location对象的相关属性
+    console.log(location.href)
+    console.log(location.host)
+    console.log(location.port)
+    //修改location对象
+    location="https//:www.baidu.com"
+    location.href="https//:www.baidu.com"
+
+    /**常用方法*/
+    //1.assign()  跳转到其他页面，效果与直接修改location一样,可使用回退键回退
+      /**console.log(location)  修改地址后无法直接读取页面（反爬）*/
+      location.assign('https://www.baidu.com')
+    //2.reload()  重新加载当前页面，reload(true)将会以最有效的形式重新加载资源（必要时会不携带
+                //  缓存数据重新加载）
+      location.reload()
+      // location.assign('https:///www.baidu.com') 刷新后不会继续显示之前的网页内容，
+                // 但会显示之后的（true参数下的可能不会继续加载后面的，为了最优先有效）
+    //3.replace()   使用一个新的页面替换当前页面，调用完毕后也会跳转页面，不会生成历史记录，不能使用回退按钮回退
+      location.replace('https://www.baidu.com')
+
+  </script>
+</body>
+</html>

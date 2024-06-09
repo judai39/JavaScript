@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function checkInstanceOf(obj,classFunction){
+    if(obj===null||classFunction===null||obj===undefined||classFunction===undefined){
+      return false
+    }
+      while(obj.__proto__!=null){
+      if(obj.__proto__===classFunction.prototype){
+        return true;
+      }else{
+        obj=obj.__proto__;
+      }
+    }
+    return false
+  }
+  function Father(){
+      this.name="father"
+  }
+  Father.prototype={
+      constructor:Father,
+      say:function (){console.log("我叫"+this.name)}
+  }
+  let father = new Father();
+  let pro=new Father.prototype;
+  // let son = new father.Son();
+  // console.log(typeof son)
+  console.log(checkInstanceOf(pro,Father));
+</script>
+</body>
+</html>

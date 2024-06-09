@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+      let array=[1,2,2,2,3,4,5,6,7,8];
+      console.log(typeof array)     //数组的数据类型是object（因为数组是引用数据类型，数组名本质是对象）
+      //1.删除重复元素SET(arr)
+      let setArray = Array.from(new Set(array));
+      //document.write(setArray);
+      //2.删除数组元素返回删除元素Splice(start,getNum,replaceValue)
+      setArray.splice(0,3,11,22,33)
+      /**document.write(setArray)  //[11,22,33,4,5,6,7,8]*/
+      setArray.splice(0,2/**0*/)  //replaceValue为空置
+            //slice()提取数组元素，返回的是一个新数组
+            console.log(array.slice(1,4))
+      //3.StorageDataType.Array.of()创建数组
+      let arrOf=Array.of(1,2,3,4,5,6);
+            //StorageDataType.Array.from()创建数组
+            //     function From(...args){
+            //                 let arg = StorageDataType.Array.from(args);
+            //                 document.write(arg)
+            //               }
+            //    From(arr,`str`,26,r)
+
+      //4.array.length=0 置空数组
+      //5.obj={...arr}  数组转化为对象
+      let arrObject=[1,3,5,6,7,7]
+      let obj={...arrObject}
+      //6.array.fill(Num) 数据填充数组
+      let arrFill=new Array(5).fill(0)
+      //7.array.concat()  数组合并
+      //8.array.pop()删除最后一个元素，并返回被删除元素
+        //array.shift()删除第一个元素，并返回被删除元素
+      //9.array.unshift()向开头添加一个或多个元素，并返回新的数组长度
+      //10.join()   将数组转化为一个字符串（join(str)还能再把str添加进去（见缝插针））
+      console.log(array.join("（；´д｀）ゞ"))
+      //11.reverse()反转数组（修改原数组）
+      console.log(array.reverse())
+      //12.sort()   按照Unicode()规则进行排序
+</script>
+</body>
+</html>

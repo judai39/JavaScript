@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><h1>您要使用的操作是</h1>
+    <h2 id="advice">您的建议：</h2>
+</p>
+<input id="input" >
+<button id="adviceSubmit">建议</button>
+<button id="submit">提交内容</button>
+<button id="delete">删除内容</button>
+<script>
+
+  let submitButton=document.getElementById("submit")
+  let deleteButton=document.getElementById("delete")
+  let input=document.getElementById("input")
+  let adviceSub=document.getElementById("adviceSubmit")
+
+
+  input.onmousemove=function (){input.style.background="yellow"}
+  input.onmousedown=function (){input.style.background="pink"}
+  adviceSub.onclick=function (){
+      // adviceSub.addEventListener("click",adviceFunction)
+      let input=document.getElementById("input")
+      if(input.value===0){alert("请输入提交值！")}
+      else{
+          adviceFunction(input.value)
+      }
+  }
+
+  submitButton.onclick=function(){
+    let message=+prompt("请输入您想提交的字符")
+     submit(message)
+  }
+  deleteButton.onclick=function (){
+      let delId=+prompt("请输入您想要删除的id")
+      del(delId)
+  }
+
+  function adviceFunction(message){
+    let adviceNode=document.getElementById("advice")
+    let text=document.createTextNode(message)
+    adviceNode.appendChild(text)
+  }
+
+  function submit(message){
+      let h1=document.createElement("h1")
+      let text=document.createTextNode(message)
+      let body=document.getElementsByTagName("body")[0]
+      h1.appendChild(text)
+      h1.setAttribute("id",message)
+      body.appendChild(h1)
+  }
+
+
+  function del(delId){
+      document.getElementById(delId).remove()
+  }
+
+</script>
+</body>
+</html>

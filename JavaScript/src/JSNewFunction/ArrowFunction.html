@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let fun=(arg1,arg2,arg3)=>{
+    return arg1+arg2+arg3
+  }
+  /*可省略小括号*/
+  let fn1=num=>{
+    return num*10
+  }
+  /*可省略花括号*/
+  let fn2=score=>score*10
+  /*this指向所在作用域中this的值*/
+  let nameFunction=()=>{
+    console.log(this)
+  }
+  nameFunction()
+  let school={
+   name:'张三',
+   getName(){
+     let subFun=()=>{
+       console.log(this)
+     }
+     subFun()
+   }
+  }
+  school.getName()
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let colorArray=new Array("#00FF66","#FFFF99","#99CCFF")
+    /**1*/
+    function turnColors(){
+        let n
+        n++
+        if(n==(colorArray.length-1)) n=0
+        document.body.style.backgroundColor=colorArray[n]
+        document.body.style.color=colorArray[n-1]
+    }
+    /**2*/
+    function colorFunction(colorArr){
+        clearInterval(colorArr.timeId)
+        colorArr.timeId=setInterval(function () {
+                document.body.style.backgroundColor = colorArr[Math.floor(Math.random() * (colorArr.length + 1))]
+                document.body.style.color = colorArr[Math.floor(Math.random() * (colorArr.length + 1))]
+            }
+            ,100)
+    }
+    colorFunction(colorArray)
+
+    // console.log(Math.ceil())
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户个人信息页面</title>
+</head>
+<body>
+<h1>用户个人信息页面</h1>
+<form>
+    <label for="name">姓名：</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label>性别：</label>
+    <input type="radio" id="male" name="gender" value="男" required>
+    <label for="male">男</label>
+    <input type="radio" id="female" name="gender" value="女" required>
+    <label for="female">女</label><br><br>
+    <label>爱好：</label>
+    <input type="checkbox" id="movie" name="hobby" value="电影">
+    <label for="movie">电影</label>
+    <input type="checkbox" id="travel" name="hobby" value="旅游">
+    <label for="travel">旅游</label>
+    <input type="checkbox" id="game" name="hobby" value="游戏">
+    <label for="game">游戏</label>
+    <input type="checkbox" id="food" name="hobby" value="美食">
+    <label for="food">美食</label><br><br>
+    <label for="selfEvaluation">自我评价：</label>
+    <textarea id="selfEvaluation" name="selfEvaluation"></textarea><br><br>
+    <button type="button" onclick="showInfo()">提交</button>
+    <button type="button" onclick="selectAllHobbies()">全选</button>
+    <button type="button" onclick="clearAllHobbies()">全不选</button>
+    <button type="reset" onclick="resetForm()">重置</button>
+</form>
+<script>
+    function showInfo() {
+        var name = document.getElementById("name").value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+        var hobbies = [];
+        for (var i = 0; i < document.querySelectorAll('input[name="hobby"]').length; i++) {
+            if (document.querySelectorAll('input[name="hobby"]')[i].checked) {
+                hobbies.push(document.querySelectorAll('input[name="hobby"]')[i].value);
+            }
+        }
+        var selfEvaluation = document.getElementById("selfEvaluation").value;
+        alert("姓名：" + name + "\n性别：" + gender + "\n爱好：" + hobbies.join(", ") + "\n自我评价：" + selfEvaluation);
+    }
+
+    function selectAllHobbies() {
+        var checkboxes = document.querySelectorAll('input[name="hobby"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+        }
+    }
+
+    function clearAllHobbies() {
+        var checkboxes = document.querySelectorAll('input[name="hobby"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }
+    }
+
+    function resetForm() {
+        document.getElementById("name").value = "";
+        document.querySelector('input[name="gender"]:checked').checked = false;
+        var checkboxes = document.querySelectorAll('input[name="hobby"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }
+        document.getElementById("selfEvaluation").value = "";
+    }
+</script>
+</body>
+</html>

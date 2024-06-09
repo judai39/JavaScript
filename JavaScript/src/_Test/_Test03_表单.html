@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #myForm{
+            position: fixed;
+            margin-left: 480px;
+            margin-top: 200px;
+            /*background-color: bisque;*/
+        }
+        body{
+            background-color: #171c23;
+        }
+    </style>
+</head>
+<div style="background-color: bisque">
+    <form id="myForm">
+        <input class="text" type="text" id="userInput"><br/>
+        <input class="text" type="text" id="passwordInput" style="margin-top: 20px">
+        <input type="submit" value="submit" id="submit">
+    </form>
+</div>
+<body>
+<script>
+  let text=document.getElementsByClassName("text")
+  let formSubmit=document.getElementById("submit")
+  let userInput=document.getElementById("userInput")
+  let passwordInput=document.getElementById("passwordInput")
+  let form=document.getElementById("myForm")
+
+  for (let i=0;i<text.length;i++){
+      text[i].addEventListener("focus",formOnfocus)
+      text[i].addEventListener("blur",formOnblur)
+      text[i].addEventListener("change",inputChange)
+      // text[i].addEventListener('input',buttonColor)
+  }
+
+  function formOnfocus(){
+      this.style.background="pink"
+  }
+
+  function formOnblur(){
+      this.style.background="white"
+  }
+
+  function inputChange(){
+      buttonColor()
+      if (this.value.length<8){alert("您的输入项内容过少")}
+      if (this.value.length>8){alert("您的输入项内容过长")}
+  }
+
+
+
+  function buttonColor(){
+      if (this.value.length === 8){
+          formSubmit.style.background="green"
+      }
+      else if (this.value.length!==0) {
+          console.log("文本框内容改变了")
+          formSubmit.style.background="red"
+      }
+  }
+
+  // function buttonColor(){
+  //     if (this.value.length === 8){
+  //         formSubmit.style.background="green"
+  //     }
+  //     else if (this.value.length!==0) {
+  //         console.log("文本框内容改变了")
+  //         formSubmit.style.background="red"
+  //     }
+  // }
+
+  form.onsubmit=function (){
+    if (this.value===8){console.log("提交成功!")}
+    else {
+      alert("请输入规范的值")
+      return false
+    }
+  }
+</script>
+</body>
+</html>

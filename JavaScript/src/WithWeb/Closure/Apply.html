@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**1*/
+  function myModule(){
+    let message="Hello,world"
+    function doSomething(){
+      console.log("doSomething"+message.toUpperCase())
+    }
+    function doOtherthing(){
+      console.log("doOtherthing"+message.toLowerCase())
+    }
+    return {
+      doSomething:doSomething,
+      doOtherthing:doOtherthing
+    }
+  }
+  let obj=myModule()
+  obj.doSomething()
+  obj.doOtherthing()
+  /**2*/
+  (function (window){
+    let message="Hello,world"
+    function doSomething(){
+      console.log("doSomething"+message.toUpperCase())
+    }
+    function doOtherthing(){
+      console.log("doOtherthing"+message.toLowerCase())
+    }
+    window.myModule= {
+      doSomething:doSomething,
+      doOtherthing:doOtherthing
+    }
+  })(window)
+  myModule().doSomething()
+  myModule().doOtherthing()
+</script>
+</body>
+</html>

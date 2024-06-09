@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="myForm">
+  <input type="text" id="text" required>
+  <input type="submit" value="submit">
+</form>
+  <script>
+    /**该元素需要在form表单中*/
+    let textInput=document.getElementById('text')
+    //聚焦时执行
+    textInput.onfocus=function (){
+      this.style.background='beige'
+    }
+    //失焦时执行
+    textInput.onblur=function(){
+      this.style.background='white'
+    }
+    //当文本框内容改变时，鼠标离开文本框，输出
+    textInput.onchange=function (){
+      console.log(this.value)
+    }
+    //当文本框内容改变时，输出
+    textInput.oninput=function(){
+      console.log(this.value)
+    }
+    //点击提交按钮时文本为空
+    textInput.oninvalid=function(){
+      console.log('请您完善表单内容')
+    }
+    //选中文本内容时
+    textInput.onselect=function(){
+      console.log('您已选择了文本框内容')
+    }
+    //提交表单时输出
+    let myForm=document.getElementById('myForm')
+    myForm.onsubmit=function(){
+      console.log('表单提交')
+      // return false
+    }
+  </script>
+
+</body>
+</html>

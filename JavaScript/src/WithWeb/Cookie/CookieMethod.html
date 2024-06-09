@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**Cookie属性的操作通过document.cookie来实现*/
+
+  /**Cookie的创建*/
+  document.cookie="username=张三"
+  //还可以为cookie添加一个过期时间（以UTC或GMT时间）。默认情况下，cookie在浏览器关闭时删除.
+  document.cookie="username=李四;expires=Thu, 18 Dec 2043 12:00:00 GMT"
+  //还可以使用path参数告诉cookie的路径。默认情况下，cookie属于当前页面
+  document.cookie="username=李四;expires=Thu, 18 Dec 2043 12:00:00 GMT;path=/"
+
+  /**Cookie的读取*/
+  console.log(document.cookie="username=alk")
+
+  /**Cookie的修改（使用document.cookie替换，存在变量提升）*/
+
+  /**Cookie的删除（为expires参数添加一个过期的参数即可）*/
+  // document.cookie="username=zh"
+  console.log(document.cookie="username= ; expires=Thu,01 Jan 1970 00:00:00 GMT")
+</script>
+</body>
+</html>

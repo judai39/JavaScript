@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /**
+         * ---关于块级作用域：’{‘相当于一次进栈，‘}’相当于一次出栈
+         * var声明的变量无块级作用域，存在变量提升（var声明的变量会在代码最前(var i;i=...)）
+         * let声明的变量存在块级作用域，无变量提升
+         * const声明的变量地址值不可修改（根数据可以修改）（
+                 const str="str"
+                 const str1="str1"
+                 str=str1    错误 ）
+         /**    1、不允许重复声明
+         *      2、块级作用域
+         *      3、声明时必须赋初值
+         *      4、值不允许修改
+         * */
+        //相当于将var i in array 的运算变量提升
+        // let array=[1,2,3,4,5,6,7,8,9]
+        // for(var i in array){
+        //     setTimeout(function(){document.write(i)},100)
+        // }    //输出999999999（变量提升了）
+        // for(let i in array){
+        //     setTimeout(function (){document.write(i)},100)
+        // }     //输出123456789
+
+        /**1.var的变量提升不会受到出栈进栈的限制，永远排在其所在域的第一位
+         * 以下代码相当于
+         * var a
+         * function fn(){
+         *     var a
+         *     console(a)
+         *     a=5
+         * }
+         * fn()
+         * */
+        // var a=4
+        // function fn(){
+        //     console.log(a)
+        //     var a=5
+        // }
+        // fn()
+
+        /**2.函数提升的优先级高于变量提升（在变量不赋值的情况下）------>为什么会这样？
+         *      var a
+         *      a=a(num)
+         *      a=function(){}
+         *      console.log(a)
+         * * */
+        // function a(){}
+        // var a
+        // console.log(typeof a)
+
+        // function a(){}
+        // var a=4
+        // console.log(typeof a)
+
+        console.log(a)
+        function a(){}
+        var a=4
+
+        /**简单测试*/
+        console.log(v1)
+        var v1=100
+        function foo(){
+            console.log(v1)
+            var v1=200
+            console.log(v1)
+        }
+        foo()
+        console.log(v1)
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id ="btn">我是按钮</button>
+<div id = "box"><h1>我是Box中的大标题</h1></div>
+<a id="a" href="https://www.baidu.com">百度一下</a>
+<div style="width:100px;height:100px;background:red;" id="styleBox"></div>
+<script>
+    /**(っ °Д °;)っ
+     * html中默认值均为0
+     *
+     * */
+
+
+    /**.innerText获取html元素中的innerText*/
+    let btn = document.getElementById("btn")
+    //console.log(btn.textElement)   浏览器并不全支持
+    console.log(btn.innerText)
+    /**.innerHTML获取html元素中的innerHTML*/
+    let box = document.getElementById("box")
+    console.log(box.innerHTML)
+    /**元素节点.属性获取html元素的Attribute属性*/
+    let a = document.getElementById("a")
+    console.log(a.href)
+    console.log(a.getAttribute("href"))
+    /**.style.元素属性获取行内样式值*/
+    let styleBox=document.getElementById("styleBox")
+    console.log(styleBox.style.width)
+    console.log(getComputedStyle(styleBox,"width"))
+    //console.log(styleBox.currentStyle("width"))   ie8特有
+</script>
+</body>
+</html>

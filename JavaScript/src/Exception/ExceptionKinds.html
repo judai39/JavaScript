@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+
+      /**语法错误*/
+    try{
+        eval("alert('hello)")
+    }catch(error){
+        console.log(error)
+    }
+    /**范围错误*/
+    let num=1
+    try{
+        num.toPrecision(500)//toPrecision()作用是保留精确度，有效值不能是500
+    }catch(error){
+        console.log(error)
+    }
+    /**引用错误(使用了未声明的变量)*/
+    var x
+      try{
+        x=y+1
+      }catch(error){
+        console.log(error)
+      }
+    /**类型错误（使用的值不在期望的范围之中）*/
+    var num=1
+      try{
+        num.toUpperCase()
+      }catch(error){
+        console.log(error)
+      }
+    /**URL错误*/
+    try{
+        decodeURL("%%%") //无法对百分号编码
+    }catch (error){
+        console.log(error)
+    }
+
+  </script>
+</body>
+</html>

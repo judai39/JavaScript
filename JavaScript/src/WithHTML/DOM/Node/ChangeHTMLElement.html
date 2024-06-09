@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="ul">
+  <li id="first">列表一</li>
+  <li>列表二</li>
+  <li>列表三</li>
+  <li id="last">列表四</li>
+</ul>
+<script>
+  /**document.createElement(element)创建元素节点*/
+  /**document.createAttribute(attribute)创建HTML属性节点*/
+  /**document.createTextNode(text)创建HTML文本节点*/
+  let ul=document.createElement("ul")
+  let li=document.createElement("li")
+  let text=document.createTextNode("列表1")
+  li.appendChild(text)
+  ul.appendChild(li)
+  let li="<li>列表</li>"
+  ul.innerHTML=li
+  document.getElementsByTagName("body")[0].appendChild(ul)/**!!!(っ °Д °;)っappendChild()返回的是列表*/
+
+  /**元素节点.removeChild(element) 删除html元素*/
+  /**元素节点.replaceChile(elnement) 替换html元素*/
+  /**元素节点.appendChild(element)[i] 添加html元素  */
+  /**元素节点.insertBefore(newnode,beforenode) 元素节点后添加新节点*/
+  // let ul=document.getElementById("ul")
+  // let first=document.getElementById("first")
+  // let last=document.getElementById("last")
+  // ul.removeChild(first)
+  // let newNode=document.createElement("li")
+  // newNode.innerHTML="新新列表四"
+  // ul.replaceChild(newNode,last)
+  // let Node=document.createElement("li")
+  // Node.appendChild(document.createTextNode("列表五"))
+  // ul.insertBefore(Node,document.getElementById("last"))
+</script>
+</body>
+</html>

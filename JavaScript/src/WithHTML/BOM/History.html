@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="goAAA()">GOAAA</button>
+<button onclick="back()">BACK</button>
+<button onclick="forward()">FORWARD</button>
+<script>
+  /**常用属性*/
+  console.log(location)
+  console.log(location)
+  console.log(history)
+  console.log(history.length)
+  /**常用方法*/
+  //1.back()
+  history.back()
+  //2.forward()
+  history.forward()
+  //3.history.go(goNum) goNum=1 == forward ...  goNum=-1 == back
+  history.go(1)
+  /**注意事项*/
+  //页面的跳转会重置页面定位到当前位置,若跳转的页面是新页面,其长度不会增加(这点类似与集合的元素添加)
+  console.log(window.location)
+  console.log(window.history);
+
+  function back() {
+      window.history.back()
+      console.log(window.location)
+      console.log(window.history)
+  }
+
+  function forward() {
+      window.history.forward()
+      console.log(window.location)
+      console.log(window.history)
+  }
+  function goAAA(){
+      window.location.hash="hhh"
+      console.log(window.location);
+      console.log(window.history);
+  }
+</script>
+</body>
+</html>

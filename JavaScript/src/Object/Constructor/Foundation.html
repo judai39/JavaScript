@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**原型的引入--构造函数*/
+  //构造器完成对象的初始化
+  function Cup(color,size){
+    this.color=color
+    this.size=size
+    this.save=function(){
+      console.log("储水")
+    }
+    let instanceMember="我是实例成员"
+  }
+  let mycup1=new Cup("绿色","3400ml")
+  let mycup2=new Cup("紫色","400ml")
+  console.log(mycup1.save())//undefine
+  // console.log(mycup1.save()==mycup2.save()) 都是undefine,返回true
+  console.log(mycup1.save == mycup2.save);  //比较的是对象地址,不同,返回false
+  /**构造函数中的成员--静态成员(this.的成员)与实例成员(在构造函数中新创建的成员)*/
+
+
+  /**说明我们在构造函数中的save对象一直在重复声明--->引出js中的继承,prototype*/
+  function Cups(color,size){
+    this.color=color
+    this.size=size
+  }
+  Cups.prototype.cupSaveFunction=function (){
+    console.log("储水")
+  }
+  let cups1 = new Cups("绿色","3400");
+  let cups2 = new Cups("紫色","400");
+  console.log(cups1.cupSaveFunction == cups2.cupSaveFunction);//返回true
+  cups1.cupSaveFunction()//底层是cups._proto_.cupSaveFunction
+
+
+  /**prototype中的constructor属性*/
+  Cups.prototype={
+    constructor:Cups,
+    cupSaveFunction:function (){
+      console.log("改良储水")
+    },
+    warn:function (){
+      console.log("新增保温");
+    },
+  }
+  cups1.cupSaveFunction()
+  // cups1.warn() 报错
+  let cups3 = new Cups("红色","4000ml");
+  cups3.cupSaveFunction()
+  cups3.warn()
+
+
+  /**__proto__属性与原型链
+   * __proto__:实例对象!!与原型沟通的重要属性
+   * （；´д｀）ゞ
+   *           | new Cups()-__proto__> |
+   * 原型链:Cups--(__proto__)-->Cup.prototype--(__proto__)-->Object.prototype--(__proto__)-->null
+   *
+   * */
+  console.log(mycup1)
+  console.log(mycup1.__proto__===Cup.prototype)//true
+  console.log(mycup1.__proto__.constructor)//指向当前的构造函数
+  console.log(Cup.prototype.constructor)//指向当前的构造函数
+
+  //验证原型链
+  console.log(mycup1.__proto__==Cup.prototype)
+  console.log(Cup.prototype.__proto__ == Object.prototype);
+  console.log(Object.prototype.__proto__ == null);
+
+  /**有关js实现继承的方法(具体详情见inherit文件夹,本例一下仅是练习实例)
+   * 1.构造继承
+   * 2.原型继承
+   * 3.实例继承
+   * 4.拷贝继承
+   * */
+
+
+</script>
+</body>
+</html>

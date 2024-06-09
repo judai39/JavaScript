@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /**
+         * ---关于块级作用域：’{‘相当于一次进栈，‘}’相当于一次出栈
+         * var声明的变量无块级作用域，var声明的变量会在代码最前(var i;i=...)
+         * let声明的变量存在块级作用域，无变量提升
+         * const声明的变量地址值不可修改（根数据可以修改）（
+                 const str="str"
+                 const str1="str1"
+                 str=str1    错误 ）
+         */
+        // for(var i in array){
+        //     setTimeout(function(){document.write(i)},100)
+        // }    //输出999999999
+        // for(let i in array){
+        //     setTimeout(function (){document.write(i)},100)
+        // }     //输出123456789
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片边框和放大缩小</title>
+    <style>
+        img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <img src="10Funny.png" alt="图片" id="image">
+</div>
+
+<script>
+    const image = document.getElementById('image');
+    let isBorderAdded = false;
+
+    image.addEventListener('mouseenter', function(){
+        if (!isBorderAdded) {
+            image.style.border = '5px solid red';
+            isBorderAdded = true;
+        }
+    });
+
+    image.addEventListener('mouseleave',function(){
+        if (isBorderAdded) {
+            image.style.border = '';
+            isBorderAdded = false;
+        }
+    });
+</script>
+</body>
+</html>

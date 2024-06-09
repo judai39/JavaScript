@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    // var arr=new StorageDataType.Array(2,6,1,7,4);
+    // var sum=0;
+    // for(let i in arr){
+    //   sum=sum+arr[i];
+    // }
+    // let average=sum/arr.length;
+    // document.write("和为"+sum+" 平均值为"+average);
+
+    // let arr=new StorageDataType.Array(2,6,1,77,52,25,7);
+    // let maxNum=arr[0];
+    // for(let i in arr){
+    //     if(maxNum<arr[i]){maxNum=arr[i];}
+    // }
+    // document.write("最大值为"+maxNum)
+
+    // let color=new StorageDataType.Array('red','green','blue','pink','purple');
+    // let replaceNum;
+    // for(let i=0;i<(color.length-color.length%2)/2;i++){
+    //     replaceNum=color[i];
+    //     color[i]=color[color.length-1-i];
+    //     color[color.length-1-i]=replaceNum;
+    // }
+    // for (let i in color){
+    //     document.write(color[i]+"\t");
+    // }
+
+    // let arr=[1,54,7,2,15,36,825,1,7]
+    // let arrMax=arr[0];
+    // let arrReplace;
+    // for (let i=0;i<arr.length;i++){
+    //     for (let j=1;j<arr.length-i;j++){
+    //         if(arr[j]<arr[j-1]){
+    //             arrReplace=arr[j];
+    //             arr[j]=arr[j-1];
+    //             arr[j-1]=arrReplace;
+    //         }
+    //     }
+    // }
+    // for (let i in arr)document.write(arr[i]+"\t");
+
+    let year=+prompt("请输入年")
+    let month=+prompt("请输入月")
+    let day=+prompt("请输入日")
+    /**
+     * 未完善的代码（console.log  config()）
+     */
+    // let year=date.getFullYear();
+    // let month=date.getMonth()+1;
+    // let day=date.getDate();
+    document.write(year+"年"+month+"月"+day+"日是"+year+"年的第"+CalculateDays(year,month,day)+"天")
+
+    function CalculateDays(year,month,day) {
+        return month*30+day;
+    }
+
+    /**
+     *未完善的代码
+     const date = new Date("1996-6-6 08:22:12");
+     console.log(date * 1);
+     console.log(Number(date));
+     console.log(date.valueOf());
+     console.log(date.getTime());
+
+     const timestamp = date.valueOf();
+     console.log(timestamp);
+     console.log(new Date(timestamp));
+
+     function dateFormat(date, format = "YYYY-MM-DD HH:mm:ss") {
+        const config = {
+          YYYY: date.getFullYear(),
+          MM: date.getMonth() + 1,
+          DD: date.getDate(),
+          HH: date.getHours(),
+          mm: date.getMinutes(),
+          ss: date.getSeconds(),
+        };
+
+        for (const key in config) {
+          console.log(key, config[key]);
+          format = format.replace(key, config[key]);
+        }
+        return format;
+      }
+     console.log(dateFormat(date));
+     //传入自己想要的格式
+     console.log(dateFormat(date, 'YYYY年MM月DD日'));
+
+     */
+  </script>
+</body>
+</html>

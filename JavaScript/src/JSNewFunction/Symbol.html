@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    /**Symbol的值是唯一的,是js的第七种数据类型,类似于字符串
+     * 1.值唯一,用来解决命名冲突的问题
+     * 2.Symbol的值不能与其他数据进行运算
+     * 3.Symbol定义的对象属性不能使用增强for循环遍历,需使用Reflect.ownKeys获取键名
+     * */
+    //创建Symbol
+    let symbol1=Symbol()
+    console.log(symbol1, typeof symbol1)
+    //添加标识的Symbol(创建的对象均不相同)
+    let symbolPerson1=Symbol("张三")
+    let symbolPerson2=Symbol("张三")
+    console.log(symbolPerson1,symbolPerson2,symbolPerson1==symbolPerson2)
+    //使用Symbol for定义(创建的对象依据内容判断是否相同)
+    let personFor1=Symbol.for("张三")
+    let personFor2=Symbol.for("张三")
+    console.log(personFor1,personFor2,personFor1==personFor2);
+
+    //解决变量命名冲突
+    let game={
+      name:"狼人杀",
+      [Symbol('say')]:function (){
+        console.log("可以发言")
+      },
+      say:function(){
+        console.log("游戏进行中不能随便说话")
+      }
+    }
+    console.log(game.say)
+    //Reflect.ownKeys()获取键名
+    /**Reflect.ownKeys(obj)以数组形式返回obj中的对象*/
+    console.log(Reflect.ownKeys(game)[2]);
+
+    /**Symbol内置的魔术方法*/
+      /**Symbol.hasInstance	当其它对象使用 instanceof 运算符，判断是否为该对象的实例时，会调用这个方法
+       Symbol.isConcatSpreadable	对象的 Symbol.isConcatSpreadable 属性等于的是一个布尔值，表示该对象用于 Array.prototype.concat()时， 是否可以展开
+       Symbol.species	创建衍生对象时，会使用该属性
+       Symbol.match	当执行 str.match(myObject) 时，如果该属性存在，会调用它，返回该方法的返回值
+       Symbol.replace	当该对象被 str.replace(myObject)方法调用时，会返回该方法的返回值
+       Symbol.search	当该对象被 str.search (myObject)方法调用时，会返回该方法的返回值
+       Symbol.split	当该对象被 str.split(myObject)方法调用时，会返回该方法的返回值
+       Symbol.iterator	当对象进行 for…of 循环时，会调用 Symbol.iterator 方法， 返回该对象的默认遍历器
+       Symbol.toPrimitive	当对象被转为原始类型的值时，会调用这个方法，返 回该对象对应的原始类型值
+       Symbol. toStringTag	当对象上面调用 toString 方法时，返回该方法的返 回值
+       Symbol. unscopables	当对象指定了使用 with 关键字时，哪些属性会被 with 环境排除
+
+       * */
+    class Person{
+      /*重写默认方法*/
+      static [Symbol.hasInstance](param){
+        console.log("我被用来检测类型了")
+      }
+    }
+    let o={}
+    console.log(o instanceof Person)
+  </script>
+</body>
+</html>

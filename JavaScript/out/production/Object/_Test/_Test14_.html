@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            background-color: crimson;
+            width: 700px;
+            height: 120px;
+            position: fixed;
+            margin-left: 300px;
+            margin-top: 100px;
+
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div">
+
+</div>
+<script>
+
+    let timeText=document.getElementById("div")
+    let h1=document.createElement("h1")
+    timeText.appendChild(h1)
+
+
+    setInterval(window.onload=function (){
+        let date = new Date();
+        //闰年平年月份差距需完善
+        let newYear=365
+        let newYearSecond=newYear*24*60*60
+        let sumSecond=(date.getMonth()+1)*30*24*60*60+date.getDate()*24*60*60+date.getHours()
+            *60*60+date.getMinutes()*60+date.getSeconds()
+
+
+        let countSecond=newYearSecond-sumSecond
+        let day=parseInt(countSecond/(24*60*60))
+        let hour=parseInt((countSecond%(24*60*60))/(60*60))
+        let minute=parseInt(((countSecond%(24*60*60))%(60*60))/60)
+        let second=parseInt(((countSecond%(24*60*60))%(60*60))%60)
+        let timeString="距离新年还有："+day+"天"+hour+"时"+minute+"分"+second+"秒"
+        h1.textContent=timeString
+
+    },1000)
+
+</script>
+
+</body>
+</html>

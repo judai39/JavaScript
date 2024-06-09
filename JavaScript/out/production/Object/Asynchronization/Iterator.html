@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**用处:自定义遍历数据*/
+
+    //与其他遍历方法比较
+    const xiyou=["唐僧","孙悟空","猪八戒","沙僧"]
+    /*for of 遍历输出数组(元素)*/
+    for(let v of xiyou){
+        console.log(v);
+    }
+    /*for in遍历输出元素(下标)*/
+    for(let v in xiyou){
+        console.log(v);
+    }
+    /*调用默认迭代器输出数组元素(对象)*/
+
+
+    /**查看iterator源码？！！！！****/
+
+
+    let iterator=xiyou[Symbol.iterator]()
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+
+    //自定义遍历数据
+    const class_={
+        name:"五班",
+        students:[
+            "张三",
+            "李四",
+            "王五"
+        ],
+        [Symbol.iterator](){
+            //索引常量
+            let index=0
+            let _this=this
+            return{
+                next:function (){
+                    if(index<_this.students.length){
+                        const result={value:_this.students[index],done:false}
+                        index++
+                        return result
+                    }else{
+                        return{value:undefined,done:true}
+                    }
+                }
+            }
+        }
+    }
+    for(let stu of class_){
+        console.log(stu)
+    }
+
+
+
+</script>
+</body>
+</html>

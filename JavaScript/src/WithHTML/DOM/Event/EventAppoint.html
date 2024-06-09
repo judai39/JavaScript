@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="ul">
+    <li><a href="javascript:;" class="link">超链接一</a></li>
+    <li><a href="javascript:;" class="link">超链接二</a></li>
+    <li><a href="javascript:;" class="link">超链接三</a></li>
+</ul>
+  <script>
+    /**我们只希望绑定一次事件，即可应用到多个元素上，即使元素是后添加的，这时可以将事件绑定给
+     * 共同的祖先元素，这样不管什么子类元素请求，都会冒泡到祖先元素进行响应
+     * */
+    let ul=document.getElementById('ul')
+    ul.onclick=function(event){
+        event=event||window.event
+        if(event.target.className=='link'){
+            console.log('我是ul的单击响应函数')
+        }
+    }
+
+
+  </script>
+</body>
+</html>

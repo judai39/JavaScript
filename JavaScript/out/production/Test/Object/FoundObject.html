@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+       /**对象的属性值可以是变量，也可以是函数*/
+      //1.对象属性
+      let person = new Object()
+      person.name="孙悟空"
+      person.age=18
+      console.log(person)
+      /**delete删除对象元素*/
+      //delete person.age
+
+      //2.遍历对象
+      let person1={name:"张三",age:21}
+      for (let personKey in person1){
+        console.log(personKey+":"+person1[personKey])
+      }
+
+      /**函数创建对象*/
+      function CreatePerson1(name,age){
+          let obj = new Object()
+          obj.name=name
+          obj.age=age
+          obj.name=name
+          obj.age=age
+          obj.Message1=function (){
+              console.log(obj.name+'  '+obj.age)
+          };
+          return obj
+      }
+      function CreatePerson2(name,age){
+          function Message2 (){
+              console.log(name+age)
+          }
+          return obj1={
+              nameObj:name,
+              ageObj:age,
+              messageObj:Message2
+          }
+      }
+      // alert(typeof CreatePerson2)
+       let personXIYOU1=CreatePerson1("孙悟空",18)
+       let personXIYOU2=CreatePerson1("猪八戒",20)
+       let personXIYOU3=CreatePerson2("沙悟净",19)
+       console.log(personXIYOU1)
+       console.log(personXIYOU2)
+       console.log(personXIYOU3)
+       /**用构造函数创建对象*/
+       function Person(name,age) {
+           this.name=name
+           this.age=age
+           this.PersonMessage=function (){
+               console.log(this.name+this,age)
+           }
+       }
+       // alert(typeof Person)
+       let People=new Person("人",20)    /**构造函数new出来的对象有名称（java中函数不是引用类型，但构造函数new出来的是对象）*/
+       console.log(People)
+       //（；´д｀）ゞ当创建对象过多时(构造函数内的方法会被反复创建占用内存,(Java中使用查询函数优化)
+                    //js中可以使用全局函数进行优化 )
+                       function PersonUpdate(name,age) {
+                           this.name=name
+                           this.age=age
+                           /**类似于查询*/
+                           this.PersonMessge=PersonMessage
+                       }
+                           function PersonMessage(){
+                               console.log(this.name+this.age)
+                           }
+                       /**直接构建查询可能会于其他编辑者的函数名称冲突=>原型(原型链:查找对象又想找调用方，然后再找调用者的原型)*/
+
+                        /**原型写法*/
+                        function PersonUpdatePrototype(name,age){
+                            this.name=name
+                            this.age=age
+                        }
+                        PersonUpdatePrototype.prototype.PrototypePersonMessage=function(){
+                            console.log((this.name+this.age))
+                        };
+                        let personPrototype=new PersonUpdatePrototype("猴子",18)
+                        personPrototype.PrototypePersonMessage();
+
+
+
+       /**hasOwnProperty()查询仅自身（不包含原型）*/
+        //普通
+       function MyClass(){}
+       MyClass.prototype.name="我是原型名字但是查找本方法时也会查找我"
+       let myclass=new MyClass()
+       myclass.age=18
+       //in   hasOwnProperty()      都是搜寻目标函数中是否有名字与之相同的变量或方法
+       console.log("name" in myclass)       //返回true
+       console.log(myclass.hasOwnProperty("name"))//返回false
+
+</script>
+</body>
+</html>

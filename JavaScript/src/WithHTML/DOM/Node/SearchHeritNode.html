@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+  <ul id="ul">
+    <li><a href="https://www.baidu.com">超链接1</a></li>
+    <li id="two"><a href="https://www.baidu.com">超链接2</a></li>
+      <li id="three"> <a href="https://www.baidu.com">超链接2</a> </li>
+    <li><a href="https://www.baidu.com">超链接3</a></li>
+    <li><a href="https://www.baidu.com">超连接4</a></li>
+  </ul>
+</div>
+<script>
+  let box=document.getElementById("box")
+  let ul=document.getElementById("ul")
+  let two=document.getElementById("two")
+  let three=document.getElementById("three")
+  console.log(ul.parentElement)
+  console.log(ul.parentNode)
+
+  /**childNodes()返回目标节点的子元素节点（包含空白字符节点!!!!）*/
+  console.log(box.childNodes)
+  console.log(ul.childNodes)
+  console.log(two.childNodes)
+  console.log(three.childNodes)
+  console.log(box.children)
+
+  console.log(ul.firstChild)
+  console.log(ul.firstElementChild)
+  console.log(ul.lastChild)
+  console.log(ul.lastElementChild)
+
+  console.log(two.previousSibling)
+  //返回前一个兄弟节点
+  console.log(two.previousElementSibling)
+  console.log(two.nextSibling)
+  console.log(two.nextElementSibling)
+</script>
+</body>
+</html>

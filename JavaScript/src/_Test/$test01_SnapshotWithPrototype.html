@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        /**观察这两句话吧,思考添加原型属性和创建原型"类子类"的区别*/
+        //创建类子类对象,修改了对象属性
+        createSnapshot.prototype=new Editor("我是要备份的信息")
+        createSnapshot.prototype.constructor=createSnapshot
+
+
+        /**@监工类(命令族)*/
+        function createSnapshot(){
+            return new Snapshot(this,this.snapshotMessage)
+        }
+
+        function Snapshot(editor,snapshotMessage){
+            this.editor=editor
+            this.snapshotMessage=snapshotMessage
+        }
+
+        /**观察这两句话吧,思考添加原型属性和创建原型"类子类"的区别*/
+        //添加原型对象,仅能读取this属性,不能做修改(!!不能根据对象修改对象,也就无法实现
+        //  诸如监工,中介这种功能)
+
+        Snapshot.prototype.restoreSnapshot=function (){
+            this.editor.snapshotMessage=this.snapshotMessage
+        }
+        Snapshot.prototype.printMessage=function (){
+            alert(this.snapshotMessage+this.editor)
+        }
+
+
+        /**为什么说动态语言无法使用备忘录的还原功能,在本例中,我们怎么样才能做到将编辑器方法中
+         * 的文本改变的同时实现备忘录文本对其的赋值?实现不了的,因为js整个文件只能算作一个类,
+         * 我们无法对其中的动态对象(就是同名方法生成的不同对象)进行不同维度(就是指不同类之间)
+         * 性质的操作
+         * */
+        let snapshot=new createSnapshot()
+        snapshot.printMessage()
+
+        /**仔细想想,动态语言的特点不就是"在对象创建成功是未进行定义",因此可以多次赋值不是吗?
+         *
+         * (其实静态语言不是也可以实现赋值的替代吗?那是将不同实例类之间的运行类型的指针转
+         * 换,但是动态语言可不是指针的转换,而是一开始就没有定义运行类型,在程序运行过程中
+         *遵照最终的运行类型)
+         *
+         * 意思就是,在同一维度间,仅能有一个this(指针),在本例中的体现就是,备忘录类仅能在本this
+         * 中生效,一旦修改了this.message,那么这一个"指针链"上的所有对象值均改变,那此时又何来的
+         * "备忘录之前的文本"的概念一说呢?
+         *
+         *  */
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+            /**
+             * 基本数据类型：number，string，boolean，undefined，null
+             * 值是不可变的
+             * 基本数据类型的比较是值的比较
+             * 使用typeof 数据检查变量的数据类型
+             * 变量未初始化值为undefined，是由null演变而来，null更偏向为空的对象
+             * */
+            console.log(typeof 123)
+            document.write(typeof null) //返回一个object
+            document.write(typeof undefined) //返回一个undefined
+
+            /**String*/
+            //关于toString()的重写
+            let array = ["code",true,12,-5]
+            console.log(array.toString())
+            let error=new Error("自定义错误信息")
+            console.log(error.toString())   //Error:自定义错误信息
+            console.log(Function.toString())//function Function() { [native code] }
+
+
+
+
+
+
+</script>
+</body>
+</html>

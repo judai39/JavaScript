@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        div{
+            position: fixed;
+            margin-top: 400px;
+            width: 200px;
+            display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div style="padding-left: 0px">理论自信</div>
+<div style="padding-left: 200px">道路自信</div>
+<div style="margin-left: 400px">制度自信</div>
+<div style="margin-left: 600px">文化自信</div>
+
+
+<script>
+    let divArr=document.getElementsByTagName("div")
+
+    for(let i=0;i<divArr.length;i++){
+        divArr[i].style.color="rgb("+parseInt(Math.random()*255+1)+","+parseInt(Math.random()*255+1)+","+parseInt(Math.random()*255+1)+")"
+        divArr[i].addEventListener("click",move)
+    }
+
+    function move(){
+        this.style.marginTop=300+"px"
+        let element=this
+        setTimeout(function (){element.style.display="none"},1000)
+    }
+
+
+</script>
+
+</body>
+</html>

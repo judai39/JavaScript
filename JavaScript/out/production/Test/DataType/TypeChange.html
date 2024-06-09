@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+              /***
+               *  关于类型转换：自动转换和强制转换（强制转换一般是指转换成String,Number,Boolean）
+               */
+              //转换成String（toString方法，String装箱，拼串方法）
+              let a=123
+              toStringMethod=a.toString()
+              StringMethod=String(a)
+              StringAdd=a+''
+              document.write(toStringMethod+' '+StringMethod+' '+StringAdd)
+
+
+              //转换成Number（Number装箱，parseInt(),parseFloat()）
+              let str="abcd"
+              NumberMethod=Number(str)
+              ParseInt=parseInt(str)
+              ParseFloat=parseFloat(str)
+              let undefinedNum=undefined
+              console.log(Number(undefinedNum)) //NaN
+              let booleanNum=true
+              console.log(Number(booleanNum)) //1
+
+
+              //转换成Boolean（Boolean装箱）
+              console.log(NaN)  //false
+              console.log(0)    //false
+              console.log(2)    //true
+              console.log("jflk")//true
+
+
+
+
+              //转换为
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="button">我是按钮</button>
+    <div  style="width: 100px;height:100px;background: red;" id="box">
+      <h1>我是box中的大标题</h1>
+    </div>
+    <a id="a" href="https://www.baidu.com">百度一下</a>
+    <script>
+      let button = document.getElementById("button")
+      console.log(button.innerText)
+      let box=document.getElementById("box")
+      box.innerHTML="<h2>我是box中的子标题</h2>"
+      console.log(box.innerHTML)
+      let a=document.getElementById("a")
+      console.log(a.getAttribute("href"))
+      console.log(box.style.width)
+
+    </script>
+</body>
+</html>

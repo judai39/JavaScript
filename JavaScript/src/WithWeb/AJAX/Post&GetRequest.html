@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**Get请求*/
+  // let ajax=new XMLHttpRequest()
+  // ajax.open("get","_users.json")//设置请求的url参数、
+  // ajax.send()//发送请求（可以放在onreadystatechange后面）
+  // ajax.onreadystatechange=function (){  //注册事件，onreadystatechange状态改变就会调用
+  //   if(ajax.readyState==4&&ajax.status==200){
+  //     console.log(ajax.responseText)
+  //   }
+  // }
+
+  /**Post请求*/
+     // let ajax=new XMLHttpRequest()
+  //   ajax.open("post","_users.json")
+  //   /*post请求一定要添加请求头，否则会报错*/
+  //   ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+  //   ajax.onreadystatechange=function(){
+  //     if (ajax.readyState==4&&ajax.status==200){
+  //         console.log(ajax.responseText)
+  //     }
+  //   }
+  //   ajax.send()
+
+
+    /**Get,Post请求整合*/
+   let Ajax={
+       get: function(url,fn){
+           let xhr=new XMLHttpRequest()
+           xhr.open("get",url,true)
+           xhr.onreadystatechange=function(){
+               if (xhr.readyState==4 && xhr.status==200 || xhr.status==304){
+                   fn.call(this,xhr.responseText)
+               }
+           }
+           xhr.send()
+       },
+       post: function (url,fn){
+           let xhr=new XMLHttpRequest()
+           xhr.open("get",url,true)
+           xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+           xhr.onreadystatechange=function (){
+               if (xhr.readyState==4 && (xhr.status==200 || xhr.status==304)){
+                   fn.call(this,xhr.responseText)
+               }
+           }
+           xhr.send()
+       }
+   }
+   // Ajax.get("_users.json",function (response){console.log(response)})
+   Ajax.post("_users.json",function (response){console.log(response)})
+    </script>
+</body>
+</html>

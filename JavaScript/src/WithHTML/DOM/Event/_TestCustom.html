@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box1" style="width: 100px;height: 100px;background: red;position: absolute"></div>
+<div id="box2" style="width: 100px;height: 100px;background: green;position: absolute"></div>
+  <script>
+    let box1=document.getElementById('box1')
+    let box2=document.getElementById('box2')
+    drag(box1)
+    drag(box2)
+    //自定义事件
+    /**setCapture() releaseCapture() 即使鼠标闪的太快失焦也不会终止,只有releaseCapture()才能剪短
+     * 一个形象的比喻：setCapture()像是拴着🐏的绳子，releaseCapture()就是间断该绳子的剪刀，除非
+     *              剪断该绳子，否则🐏无法挣脱
+     *              ：：所以本例中的releaseCapture()设置在onmouseup事件中，我们只希望在松开按钮时失效
+     * */
+    function drag(obj){
+        obj.onmousedown=function (event){
+            // event=event||window.event
+            obj.setCapture && obj.setCapture()
+            let xDrift=event.clientX-obj.offsetLeft
+            // let yDrift=event.clientY-obj.offsetHeight//元素高度
+            let yDrift=event.clientY-obj.offsetTop//元素据上边缘的高度
+            /**document为对象，因为在点击后移动在页面的任意位置都可触发，因此document对象*/
+            document.onmousemove=function (event){
+                // event=event||wondow.event
+                //获取鼠标的位置
+                let left=event.clientX-xDrift
+                let top=event.clientY-yDrift
+                /**为什么不可以用this无参函数捏：因为this指的是document啊*/
+                // let left=this.clientX-xDrift
+                // let top=this.clientY-yDrift
+                //修改obj的位置
+                obj.style.left=left+'px'
+                obj.style.top=top+'px'
+            }
+            document.onmouseup=function(){
+                /**如果不置空，按下和移动事件不会停止（体现在方块无法脱离鼠标）*/
+                document.onmousemove=null
+                document.onmouseup=null
+                obj.releaseCapture && obj.releaseCapture()
+            }
+            /**return false 是为了取消浏览器的默认行为
+             * 在拖拽网页内容时，浏览器会自动搜索网页内的内容
+             * */
+            return false
+        }
+    }
+  </script>
+</body>
+</html>

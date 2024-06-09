@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>这是点击的第几个按钮？</button>
+<button>这是点击的第几个按钮？</button>
+<button>这是点击的第几个按钮？</button>
+<script>
+  /**引入----点击某个按钮，提示”点击的是第n个按钮“
+   *
+   * 如何产生闭包？ ----当嵌套的子函数于父函数中引用父函数时
+   * 闭包的理解： 与局部内部类极为相似，只是将接口内接在函数体内，通过该函数中的其他成员进行重写
+   *             所谓的保存数据也只是成员重写将原本值进行覆盖的一种体现
+   * */
+
+  /*利用下标保存*/
+  // let button=document.getElementsByTagName("button")
+  // for(let i=0,length=button.length;i<length;i++){
+  //   let btn=button[i]
+  //   btn.index=i
+  //   btn.onclick=function(){
+  //     alert("这是点击的第"+(this.index+1)+"个按钮")
+  //   }
+  // }
+  /*利用闭包保存延长局部变量的生命周期*/
+  let button=document.getElementsByTagName("button")
+  for(let i=0,length=button.length;i<length;i++){
+    (function (j){
+      let btn=button[j]
+      btn.onclick=function (){
+        alert('这是点击的第'+(j+1)+"个按钮")
+      }
+    })(i)
+  }
+
+
+  /**简单闭包案例*/
+  function count(){
+      let num=2
+      function sub(){
+          num++
+          console.log(num)
+      }
+      return sub
+  }
+  let a=count()
+  a()
+  a()
+  /*若直接实例化对象会直接把函数内容赋值给a对象*/
+  // let a = new count()
+  // console.log(a)
+
+</script>
+</body>
+</html>

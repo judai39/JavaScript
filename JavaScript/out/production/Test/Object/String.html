@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+        /**String(),Number(),Boolean()间的相互转化*/
+
+        /**字符串属性*/
+        //constructor
+        let strConstructor="Hello"
+        console.log(strConstructor.constructor) //String() { [native code] }
+        //length
+        console.log(strConstructor.length)
+
+        /**字符串方法*/
+        //charAt()获取指定位置的字符串
+        console.log(strConstructor.charAt(1))
+        //charCodeAt()获取指定位置的字符串编码（unicode编码）
+        console.log(strConstructor.charCodeAt(1))
+        //concat()连接字符串
+        let str='world'
+        console.log(strConstructor.concat(str))
+        //indexOf(str,startLocation)检索字符串是否存在指定内容（有则返回其索引，没有则返回-1）
+        console.log(str.indexOf('o'))
+        //lastIndexOf(str,startLocation)和indexOf()一样，但从后往前
+        console.log(str.lastIndexOf('o',1))
+        //slice[start,end)截取指定内容,不影响源字符串，返回新字符串
+        console.log(str.slice(0,3))
+        console.log(str.slice(1,-1))  //orl
+        //substring[start,end) （与slice()类似，但不接收负值（默认变为0），并且会自动将较小的数调整到前面）
+        console.log(str.substring(3,-1))
+        //split(str)拆分数组（以str为界限）
+        strResult="hello,world!"
+        console.log(strResult.split(','))
+        //toUpperCase()   toLowerCase()
+
+
+</script>
+</body>
+</html>

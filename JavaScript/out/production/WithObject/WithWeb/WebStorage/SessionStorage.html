@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**1、sessionStorage对象存储特定于某个对话的数据，声明周期为当前窗口或标签页（页面关闭即被清空）
+     * 2、sessionStorage中的数据可以跨页面刷新而存在
+     * 3、sessionStorage对象绑定某个服务器会话，所以当文件在本地运行时不可用--->存储在sessionStorage
+     *      中的数据只能由最初给对象存储数据的页面访问到（因此对多页面页面有限制）
+     * 4、不同浏览器写入数据方法略有不同。同步写入（firefox，webkit等）添加到存储空间的数据是立刻被提交的
+     *      ，异步写入（如ie）写入磁盘之间会有一些延迟
+     * */
+    //保存，读取数据
+    sessionStorage.setItem("username","张三")
+    console.log(sessionStorage.getItem("username"))
+
+    //删除数据
+    // sessionStorage.removeItem("username")
+    // console.log(sessionStorage.getItem("username"))
+
+    //遍历sessionStorage中的键值对，属性，方法
+    for (let key in sessionStorage){
+        console.log(key+"="+sessionStorage[key])
+    }
+</script>
+</body>
+</html>

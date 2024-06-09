@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    /**函数的创建*/
+        //1.实例化Function并赋值一个function类型的数据
+        let Print=new Function("执行语句")
+        console.log(typeof Print)  //function
+        //2.函数模块写法
+        function PrintMethod(){
+          console.log("我是一个封装的函数模块")
+        }
+        //3.模块写法并返回一个function类型的数据
+        let functionType=function (){}
+
+    /**函数的调用*/
+        //1.无参调用与有参调用
+        PrintMethod();
+        //2.不定参数下的有参构造
+        function Calculate(...arg){
+          console.log(arg)
+        }
+        Calculate(1,4,5,6,7,8,43)
+        //3.函数与返回值
+        function Calculates(...num){
+          document.write(typeof num)  //object（不定参数在传入时被自动封装为一个数组）
+          // 底层本质：return new Array(num)
+          return num
+        }
+        document.write(Calculates(2,4,5,6))
+    /**特殊函数*/
+        //1.嵌套函数
+        function OutFunction(){
+          function InnerFunction(){
+            console.log("我是内部函数，只有我的外部函数才能访问我")
+          }
+          InnerFunction()
+        }
+        OutFunction()
+
+        //2.匿名函数
+        let functionParameter=function(){
+            alert("我是一个匿名函数，没有名字，被另一个数据接受使用")
+        }
+        //functionParameter()被当成函数接收
+        //document.write(functionParameter)被当成变量接收
+        /**2.5.速发函数*/
+                // (function () {
+                //   alert("我是一个立即执行函数")
+                // })()
+
+  </script>
+</body>
+</html>

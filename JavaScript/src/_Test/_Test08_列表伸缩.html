@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      h3{
+          background-color: #3DB1FF;
+      }
+
+    </style>
+</head>
+<body>
+<div id="collapse1">
+    <h3>同学</h3>
+    <div style="display: none">
+        <p>同学1</p>
+        <p>同学2</p>
+        <p>同学3</p>
+        <p>同学4</p>
+    </div>
+</div>
+<div id="collapse2">
+    <h3>朋友</h3>
+    <div id="2" style="display: none">
+        <p>朋友1</p>
+        <p>朋友2</p>
+        <p>朋友3</p>
+        <p>朋友4</p>
+    </div>
+</div>
+<div id="collapse3">
+    <h3>家人</h3>
+    <div style="display: none">
+        <p>家人1</p>
+        <p>家人2</p>
+        <p>家人3</p>
+        <p>家人4</p>
+    </div>
+</div>
+<script>
+    let title=document.getElementsByTagName("h3")
+    for(let i=0;i<title.length;i++){
+        Binding(title[i])
+    }
+
+    function Binding(event){
+        event.addEventListener("click",function(){
+           if (this.nextElementSibling.style.display==="none"){
+               this.style.backgroundColor="Red"
+               this.nextElementSibling.style.display="block"
+           }else{
+               this.style.backgroundColor="#3DB1FF"
+               this.nextElementSibling.style.display="none"
+           }
+        })
+    }
+</script>
+</body>
+</html>

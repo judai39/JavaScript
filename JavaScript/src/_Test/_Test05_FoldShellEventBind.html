@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .active{
+      background: wheat;
+    }
+  </style>
+</head>
+<body>
+<div id="collapse">
+  <h3>留言基本操作</h3>
+  <div style="display: none">
+    <p>1.发表新留言</p>
+    <p>2.对其他用户留言进行评价</p>
+    <p>3.对官方回复进行评价</p>
+    <p>4.编辑自己的留言</p>
+  </div>
+</div>
+<script>
+let collapse=document.getElementById("collapse")
+let title=collapse.getElementsByTagName("h3")
+let content=collapse.getElementsByTagName("div")
+
+for (let i=0;i<title.length;i++){
+  Binding(title[i])
+}
+
+function Binding(current){
+  current.addEventListener("click",function (){
+    let current=this.nextElementSibling
+    if (current.style.display=="block"){
+      current.style.display="none"
+      this.className=""
+    }else{
+      //重叠所有内容为隐藏
+      for(let i=0;i<content.length;i++){
+        content[i].style.display="none";
+        content[i].previousElementSibling.className=""
+      }
+      current.style.display="block"
+      this.className="active"
+    }
+  })
+}
+
+</script>
+</body>
+</html>

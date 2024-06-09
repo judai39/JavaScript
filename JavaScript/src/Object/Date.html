@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let date = new Date();
+        console.log(date)
+        /**获取当前日期对象的年份*/
+        console.log(date.getFullYear())
+        /**获取当前日期对象的月份*/
+        console.log(date.getMonth()+1)
+        /**获取当前日期对象的天数*/
+        console.log(date.getDate())
+        /**获取时分秒*/
+        date.setFullYear('2020')
+        console.log(date)
+
+        /**方法返回指定日期是星期几（从 0 到 6）。*/
+        console.log(date.getDay())
+
+    </script>
+</body>
+</html>

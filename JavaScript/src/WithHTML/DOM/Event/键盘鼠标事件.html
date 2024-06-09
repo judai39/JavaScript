@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box" style="width: 100px;height: 100px;background: black"></div>
+<script>
+  /**普通按键键盘事件*/
+  //window.onkeyup  当松开按键是运行脚本
+  //window.onkeypress  当按下按键时运行脚本（和onkeydown一样，但onkeypress可以通过
+  //shift和capslock切换输出情况）
+      // window.onkeydown=function(event){
+      //   /*解决兼容性问题*/
+      //   event=event||window.event
+      //   //当按键是a时为真
+      //   if(event.keyCode==65){
+      //     console.log('true')
+      //   }else{
+      //     console.log('false')
+      //   }
+      // }
+  /**事件按键键盘事件*/
+  //ctrlKey altKey shiftKey
+  //clientX clientY 返回当目标事件被触发时，鼠标指针的水平和垂直坐标
+  //screenX screenY 返回当某个事件被触发时，鼠标指针的水平和垂直坐标
+
+  /**鼠标事件*/
+  //onclick 单击鼠标运行
+  //ondblclick 双击鼠标运行
+  //onmouseup onmousemove onmousedown 当松开，移动，按下鼠标时运行
+  //onmouseover onmouseout 当鼠标移动到元素上，移出元素时运行（不可以阻止冒泡）
+  //onmouseenter onmouseleave 当鼠标移动到元素上，移出元素时运行（可以阻止冒泡）
+  //onmousewheel onscroll 当转动鼠标滚轮时，滚动元素的滚动条时运行
+  /**通过一下例子思考:事件函数中的event参数与this指代的是说明
+   * */
+  box.onmouseout=function (){
+      this.style.background='green'
+  }
+  box.onmouseover=function (){
+      this.style.background='red'
+  }
+  box.onclick=function (event){
+      // event.style.backgroundColor='black' 报错
+      /**匿名函数,事件监听中,event获取的是动作指令(onclick)的window可作用对象
+       * (例如onclick作用的是鼠标对象,因此只有鼠标类型的动作才可生效),
+       * */
+      alert(event.clientY)
+      /**this指向的对象是动作的执行对象,在此处指的是div*/
+      this.textContent="在box中出现了"
+  }
+</script>
+</body>
+</html>

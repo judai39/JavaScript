@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+        /**this输出当前对象*/
+        let name="全局变量"
+        let printMessage=function(){console.log(this.name)}
+        let printmessage=function(){
+            console.log(this)
+            message=function (){
+                console.log(this)
+            }
+        }
+        let obj={
+            name:"孙悟空",
+            // sayName:print()     obj.sayName is not a function
+                                    // (本质上是对象sayName接收了对象print)
+            sayName:printMessage
+        };
+            /**谁调用就指向谁*/
+        obj.sayName()      //孙悟空
+            /**全局成员全为window（也可以理解为window调用的全局成员）*/
+        printmessage()  //window
+            /**谁new()就指向谁*/
+        let printObj=new printmessage()
+        printObj.message       //printmessage
+            /**谁第一次调用的bind()就指向谁*/
+        printmessage.bind(1)()  //Number:1
+        printmessage.bind(1).bind(2)()  //Number：2
+            /**call()与apply()自定义指向类型*/
+
+
+
+
+        /**call()与apply()          （；´д｀）函数对象
+         * 共性：都是作用于函数，使函数拥有指定的this对象（和指定的值，这里的值指的时
+         *      “构造器的参数”，因为我们使用call()就是为了实现对象的初始化，指定的值也是为了服务于对象的产生）
+         * 不同：call()传入的指定值以”若干个参数列表“形式，
+         *      apply()传入指定值以”由参数列表构成的数组“形式
+         * */
+
+        function Dog(words){
+            return this.say+this.says+words   //this.被call()改变了指向，指向了obj
+        }
+        obj={
+            say:"该对象",
+            says:"不会叫"
+        }
+        /**call(obj,后面接参数)  apply(obj,后面接数组（注意读取数组的顺序）)*/
+        console.log(Dog.call(obj,'汪汪叫'))//该对象不会汪汪叫
+        console.log(Dog.call(obj,['汪汪','叫']))//该对象不会汪汪，叫
+        console.log(Dog.apply(obj,['汪汪','叫']))//该对象不会叫汪汪
+// ------------------------------------------------------------------------------
+        function Person(name,age){
+            // this.name=name
+            // this.age=age
+            //console.log(Person.call(obj1,"bob",10))   将会输出bob10（this在Person中被参数覆写）
+            return this.name+this.age
+        }
+        /**this={
+    name:this.name,
+    age:this.age
+  }*/
+        obj1={
+            name:"a",
+            age:12
+        }
+        obj2={
+            name:"b",
+            age:11
+        }
+        console.log(Person.call(obj1,"bob",10))
+        // console.log(Person.call())   默认参数（this）为空
+        // console.log(Person.call(Person))   Person被系统识别为name
+        // console.log(Person.call(undefined))    指定参数this为空值时，系统自动将this值指向系统window对象
+
+
+        /**arguments参数,与rest参数(获取函数的实参)*/
+        //1.衔接函数上下文的对象：this   封装实参的对象：arguments
+        //2.arguments是一个类数组对象，有长度，有索引
+        //3.arguments中的一个属性：callee(就是正在指向当前函数的对象)
+        function  addMethod(num1,num2){
+            console.log(arguments[1])
+            console.log(arguments.length)
+            console.log(arguments.callee)
+            console.log(arguments.callee==addMethod)
+        }
+        addMethod(20,90)
+
+        //rest作用与arguments类似
+        function add(...args){
+            console.log(args)
+        }
+        add(1,2,3,4,5)
+
+        //rest参数的最后一个必须为形参,并且输出值形式也对应于形参
+        function minus(a,b,...args){
+            console.log(a,b,args)
+        }
+        minus(100,1,2,3,4,5,6,19)
+        //spread扩展运算符(相当于rest参数的逆运算,rest的...参数在进栈时会将其转化为不定参数然
+        // 后在出栈时转化arguments为数组出栈,spread在进栈时以数组形式,出栈时转化成集成对象出栈)
+        let Hero=["德玛","西亚","万岁"]
+        function printPerson(){
+            console.log(arguments)
+        }
+        printPerson(...Hero)
+        let skillOne={q:"致命打击"}
+        let skillTwo={w:"勇气"}
+        let skillThree={e:"审判"}
+        let skillFour={r:"德玛西亚正义"}
+        let gaiLun={...skillOne,...skillTwo,...skillThree,skillFour}
+        console.log(gaiLun)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**定义一个判断对象是否为目标方法原型的方法*/
+  function checkInstanceOf(obj,classFunction){
+    if(obj===null||classFunction===null||obj===undefined||classFunction===undefined){
+      return false
+    }
+      while(obj.__proto__!=null){
+      if(obj.__proto__===classFunction.prototype){
+        return true;
+      }else{
+        obj=obj.__proto__;
+      }
+    }
+    return false
+  }
+  /**定义Father方法*/
+  function Father(){
+      this.name="father"
+  }
+  /**自定义Father方法原型*/
+  function Son(){
+      let say=function(){
+          console.log("i am son")
+      }
+  }
+    Son.prototype=new Father()
+    Son.prototype.constructor=Son
+    // 原来是这么写的:let pro=new Father.prototype;
+    let son=new Son()
+    console.log(checkInstanceOf(son,Father));
+  /**（；´д｀）ゞ
+        有关js中的原型对象：
+            1.对于son.prototype=function(){},其本质仅仅只是对son的原型属性__proto__
+            添加了一个成员,其原型的对象仍然是空值
+            2.对目标添加原型对象本质是将两个实体对象进行链接组合,不是像添加属性那样
+                这种添加方式就是所谓的"组合继承"
+                Son.prototype=new Father();
+                （；´д｀）ゞ?:   Son.prototype.constructor=Son;
+            3.对于2中的（；´д｀）ゞ?,意指将构造器指针重新指向子类的构造函数
+   * */
+
+
+
+  /**试一试普通的添加原型对象,缺点:太慢太麻烦*/
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+    }
+    //本质是添加原型属性
+    Person.prototype.study=function(){
+        console.log(this.name,this.age)
+    }
+
+    /**(っ °Д °;)っ如何能变得更快捷的添加原型对象呢?(!!!!有坑)*/
+    /*Person实例出的对象并不是拥有了它的构造器和属性,仅仅只是通过__proto__共享
+     * */
+    Person.prototype={
+        // 在这里隐藏着对原型构造器的覆盖,Person实例化的对象再也查找不到它的构造器了
+        study:function(){console.log(this.name,this.age)},
+        say:function(){console.log(this.name,"say hello")}
+    }
+    //f Object(){[native code]} 为什么会这样?
+    console.log(new Person("as",10).constructor)
+    /*person查找构造器的过程解读:
+     *      Person实例化出来的person借由__proto__查找它所拥有的原型的构造器,但是由于
+     *      Person.prototype={}覆盖了原型对象,导致指针不在指向构造器,person只好去找公共原型
+     *      Object,Object再去找Object的原型中的构造器,也就是 f Object(){[native code]}
+     * */
+
+
+    /**(っ °Д °;)っ改进*/
+    Person.prototype={
+        constructor:Person,
+        study:function (){console.log(this.name,this.age)},
+        say:function (){console.log(this.name,"say hello")}
+    }
+    console.log(new Person("as",10).constructor)
+
+    /**现在在想一想本质是什么?
+        Son.prototype=new Person()
+        Son.prototype.constructor=Son
+
+       结论:对象的属性,构造器,方法储存在对象的原型中(这里的原型是一个抽象的概念,不是一个对象),
+        通过__proto__共享,原型对象的添加本质上就是将添加对象指向目标对象的原型(这样添加对
+        象的原型也就间接指向了目标对象)这样环环相扣就形成了所谓的原型链
+    * */
+
+</script>
+</body>
+</html>

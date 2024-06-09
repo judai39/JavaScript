@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**常见方法*/
+  //保存，读取数据
+  localStorage.setItem("username","张三")
+  localStorage.setItem("sex","男")
+  console.log(localStorage.getItem("username"))
+  console.log(typeof localStorage)
+  //删除数据
+  // localStorage.removeItem("username")
+  // console.log(localStorage.getItem("username"))
+
+  //遍历输出localStorage中的键值对，属性，方法
+  for(let key in localStorage){
+    console.log(key+":"+localStorage[key])
+  }
+  //遍历输出localStorage中的键值对
+  for(let i=0;i<localStorage.length;i++){
+      let key=localStorage.key(i)
+      console.log(key+":"+localStorage.getItem(key))
+  }
+
+  //删除所有数据localStorage.clear()
+</script>
+</body>
+</html>

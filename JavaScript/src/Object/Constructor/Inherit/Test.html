@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let name, age;
+
+    function father(name, age) {
+        this.name = name;
+        this.age = age;
+        console.log("我是父亲对象")
+    }
+    father.prototype.grandFather=function(name,age){
+        father.call(name,age);
+    }
+
+    let father
+
+
+</script>
+</body>
+</html>

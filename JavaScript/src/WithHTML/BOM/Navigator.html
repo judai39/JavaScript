@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**Navigator代表当前浏览器的信息，通过该对象可以来识别不同的浏览器（由于历史原因，Navigator中的大部分
+   *  属性已经不能帮助我们识别浏览器了）*/
+
+  // console.log(navigator.userAgent)
+  //根据不同的信息返回对浏览器类型的判断
+  let message=navigator.userAgent
+  if(/firefox/i.test(message)){
+    alert('火狐浏览器')
+  }else if(/chrome/i.test(message)){
+    alert('谷歌浏览器')
+  }else if(/msie/i.test(message)){
+    alert('ie5浏览器')
+  }else if('ActiveObject'in window){
+    alert('ie11浏览器')
+  }
+</script>
+</body>
+</html>

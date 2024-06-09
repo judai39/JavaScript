@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      td{
+        width: 130px;
+      }
+
+      /*!*hover悬停属性*!*/
+      /*tr:hover {*/
+      /*  background-color: red;*/
+      /*}*/
+    </style>
+</head>
+<body>
+<table>
+  <tr style="background-color: #3DB1FF">
+    <th>
+      <td>年份</td>
+      <td>最低分</td>
+      <td>省控线</td>
+      <td>录取批次</td>
+    </th>
+  </tr>
+  <tr>
+    <th>
+    <td>2021</td>
+    <td>477</td>
+    <td>400</td>
+    <td>本科二批</td>
+    </th>
+  </tr>
+  <tr>
+    <th>
+    <td>2021</td>
+    <td>477</td>
+    <td>400</td>
+    <td>本科二批</td>
+    </th>
+  </tr>
+  <tr>
+    <th>
+    <td>2021</td>
+    <td>477</td>
+    <td>400</td>
+    <td>本科二批</td>
+    </th>
+  </tr>
+  <tr>
+    <th>
+    <td>2021</td>
+    <td>477</td>
+    <td>400</td>
+    <td>本科二批</td>
+    </th>
+  </tr>
+</table>
+<button id="btn"></button>
+<script>
+  let tr=document.getElementsByTagName("tr")
+   tr.onmouseover=function (event){
+    if(true){
+      alert(event)
+    }else{
+      event.style.backgroundColor='white'
+    }
+  }
+
+
+</script>
+</body>
+</html>

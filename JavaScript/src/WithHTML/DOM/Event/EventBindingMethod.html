@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>intro</p>
+<p>ddddd</p>
+<button id="button" >Click Me!</button>
+<script>
+  /**绑定事件的几种方式*/
+    /**1.直接绑定在标签内*/
+    // <button onmouseover="alert('Welcome to CodingStartUp!')">Click me!</button>
+    /**2.通过匿名函数绑定单个事件*/
+    // document.getElementById('button').onclick=function(){
+    //   alert('Welcome to CodingStartUp')
+    // }
+    // document.querySelector('#button').onclick=function (){
+    //     alert('Welcome to CodingStartUp')
+    // }
+    /**3.通过addEventListener()绑定多个事件,注意该方法只能绑定一个事件,可采用for
+     *      循环绑定多个,或者是querySelect直接绑定多个
+     *（；´д｀）ゞ:可以在addEventListener(type，fn，boolean)中的boolean中设置为true，
+     *              事件将在捕获时就直接执行，不会冒泡出栈
+     *      */
+    document.querySelector('#button').addEventListener('click',sayWelcome)
+    function sayWelcome(event){
+      alert("Welcome to CodingStartUp"+event)
+    }
+    /*等价于*/
+            /**注意!!!! 匿名函数绑定的事件名称为onclick,但监听事件绑定的名称是click*/
+  document.getElementById("button").onclick=function(event){
+      alert("Welcome to CodingStartUp"+event)
+  }
+
+
+    /**4.通过css选择器(querySelect(id、类名、类型、属性、属性值等等))*/
+    console.log(document.querySelector("p.intro"));
+
+</script>
+</body>
+</html>

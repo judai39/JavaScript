@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    /*error对象的两个属性：name,message*/
+    /**error的name属性：
+     * EvalError	已在 eval() 函数中发生的错误
+     RangeError	已发生超出数字范围的错误
+     ReferenceError	已发生非法引用
+     SyntaxError	已发生语法错误
+     TypeError	已发生类型错误
+     URIError	在 encodeURI() 中已发生的错误
+     * */
+
+    //一个简单的异常实例
+    try{
+        console.log(a)
+    }catch(error){
+        console.log(error)
+    }finally{
+        console.log("finally一定执行")
+    }
+
+  </script>
+</body>
+</html>
